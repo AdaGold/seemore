@@ -14,3 +14,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "font-awesome";
+
+.navbar-brand.nav-logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  color: black;
+}

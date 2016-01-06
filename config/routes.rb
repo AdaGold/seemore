@@ -1,6 +1,23 @@
 Rails.application.routes.draw do
 
-  root 'users#show'
+  root 'welcome#index'
+
+  # users routes
+  get '/users/:id' => 'users#show' # gets user's account page
+
+  # media routes
+  resources :media, :only => :show do # get one twitter account's feed
+    collection do
+      get 'search/:query', :action => 'search', :as => 'search'
+    end
+  end
+  post 'users/:user_id/media/:id' => 'grams#add' # add twitter account to user's feed
+  delete 'users/:user_id/media/:id' => 'grams#remove' # delete twitter account from user's feed
+
+  # sessions routes
+  get "/auth/:provider/callback", to: "sessions#create"
+  delete "/logout", to: 'sessions#destroy', as: :logout
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
