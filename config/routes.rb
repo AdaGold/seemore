@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
-
   root 'welcome#index'
 
-  # users routes
+  # users route
   get '/users/:id' => 'users#show' # gets user's account page
 
+  # search route
+  get 'search/:query' => 'media#search', :as => 'search' # search all posts
+
+  # handles routes
+  resources :handles, :only => :show # show a twitter handle's feed
+
   # media routes
-  resources :media, :only => :show do # get one twitter account's feed
-    collection do
-      get 'search/:query', :action => 'search', :as => 'search'
-    end
-  end
-  post 'users/:user_id/media/:id' => 'grams#add' # add twitter account to user's feed
-  delete 'users/:user_id/media/:id' => 'grams#remove' # delete twitter account from user's feed
+  post 'handles/:id' => 'handles#add' # add twitter account to user's feed
+  delete 'users/:user_id/handles/:id' => 'handles#remove' # delete twitter account from user's feed
 
   # sessions routes
   get "/auth/:provider/callback", to: "sessions#create"
