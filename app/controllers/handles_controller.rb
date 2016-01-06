@@ -10,4 +10,8 @@ class HandlesController < ApplicationController
   def remove
 
   end
+
+  def search
+
+  end
 end

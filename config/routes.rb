@@ -3,12 +3,10 @@ Rails.application.routes.draw do
 
   # users route
   get '/users/:id' => 'users#show' # gets user's account page
-
-  # search route
-  get 'search/:query' => 'media#search', :as => 'search' # search all posts
-
+  
   # handles routes
   resources :handles, :only => :show # show a twitter handle's feed
+  get 'search/:query' => 'handles#search', :as => 'search' # search all posts
 
   # media routes
   post 'handles/:id' => 'handles#add' # add twitter account to user's feed
