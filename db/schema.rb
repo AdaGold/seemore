@@ -11,11 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106220432) do
+ActiveRecord::Schema.define(version: 20160106223925) do
+
+  create_table "handles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "handles_users", id: false, force: :cascade do |t|
+    t.integer "handle_id"
+    t.integer "user_id"
+  end
+
+  add_index "handles_users", ["handle_id"], name: "index_handles_users_on_handle_id"
+  add_index "handles_users", ["user_id"], name: "index_handles_users_on_user_id"
 
   create_table "identities", force: :cascade do |t|
     t.string   "uid"
     t.string   "provider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "media", force: :cascade do |t|
+    t.string   "url"
+    t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
