@@ -1,0 +1,18 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/jennanichols/Ada/ProjectForks/seemore/app/controllers/sessions_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/jennanichols/Ada/ProjectForks/seemore/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1452101108
+  }
+}
