@@ -32,6 +32,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-instagram'
 
+gem 'twitter', '~> 5.15'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
