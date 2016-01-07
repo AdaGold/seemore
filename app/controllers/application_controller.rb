@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def load_tweets
-    @tweets = $twitter.user_timeline[0..4] # For this demonstration lets keep the tweets limited to the first 5 available.
+    @user = $twitter.update("testing")
   end
 end
