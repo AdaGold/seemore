@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'omniauth-instagram'
+gem 'omniauth-vimeo'
 
 gem 'twitter', '~> 5.15'
 
