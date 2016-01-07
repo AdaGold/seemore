@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/testing' => 'media#testing'
 
   # users route
-  get '/users/:id' => 'users#show' # gets user's account page
+  get '/users/:id' => 'users#show', as: :user # gets user's account page
 
   # handles routes
   resources :handles, :only => :show # show a twitter handle's feed

@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Glegoo:400,700|Pacifico' rel='stylesheet' type='text/css'>
 </head>
-
-<%= yield %>
-
+  <body>
+    <div class="container">
+      <div class="top-margin">
+        <%= render partial: "shared/flash_messages", flash: flash %>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
 </html>
