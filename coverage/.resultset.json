@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/handles_controller.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/controllers/handles_controller.rb": [
         1,
         1,
         1,
@@ -20,7 +20,7 @@
         null,
         null
       ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/application_controller.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -42,12 +42,12 @@
         null,
         null
       ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/media_controller.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/controllers/media_controller.rb": [
         1,
         null,
         null
       ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/sessions_controller.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/controllers/sessions_controller.rb": [
         1,
         null,
         1,
@@ -59,62 +59,74 @@
         0,
         null,
         0,
-        0,
+        null,
+        null,
+        null,
         0,
         0,
         null,
         0,
         null,
         null,
-        0,
-        0,
-        0,
         null,
         0,
         0,
         0,
         null,
         null,
+        null,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
         0,
         0,
         0,
         null,
+        null,
+        null,
+        null,
+        1,
         0,
+        0,
+        null,
+        null
+      ],
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/controllers/users_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/controllers/welcome_controller.rb": [
+        1,
+        1,
+        0,
+        0,
+        null,
         null,
         null,
         null,
         null
       ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/users_controller.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/models/handle.rb": [
+        1,
         1,
         1,
         null,
-        null
-      ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/controllers/welcome_controller.rb": [
         1,
-        1,
-        0,
-        0,
         null,
         null,
         null,
         null,
         null
       ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/handle.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/identity.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/models/identity.rb": [
         1,
         1,
         null,
@@ -127,12 +139,13 @@
         null,
         null
       ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/medium.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/models/medium.rb": [
         1,
         1,
         null
       ],
-      "/Users/BluePenguin/Documents/Ada/project-forks/seemore/app/models/user.rb": [
+      "/Users/Kellykell/Desktop/ada_git/project-forks/seemore/app/models/user.rb": [
+        1,
         1,
         1,
         1,
@@ -144,6 +157,6 @@
         null
       ]
     },
-    "timestamp": 1452128496
+    "timestamp": 1452197167
   }
 }
