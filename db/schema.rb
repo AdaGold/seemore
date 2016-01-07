@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106234057) do
+ActiveRecord::Schema.define(version: 20160107215543) do
 
   create_table "handles", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "description"
+    t.string   "uri"
+    t.string   "profile_image_uri"
+    t.integer  "twitter_id"
   end
 
   create_table "handles_users", id: false, force: :cascade do |t|
@@ -36,11 +40,12 @@ ActiveRecord::Schema.define(version: 20160106234057) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.string   "url"
     t.string   "type"
     t.integer  "handle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "text"
+    t.string   "uri"
   end
 
   add_index "media", ["handle_id"], name: "index_media_on_handle_id"

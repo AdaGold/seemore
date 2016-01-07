@@ -1,30 +1,33 @@
-<body id="front-page">
-  <%= render 'shared/header' %>
-
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-      <div class="transbox">
-        <p>
-          Something
-        </p>
-        <div class="login-links">
-       <% unless current_user %>
-         <%= link_to "/auth/vimeo", class: "btn btn-default" do %>
-           <%= fa_icon("vimeo lg") %> LOG IN WITH VIMEO
-         <% end %>
-         <%= link_to "/auth/twitter", class: "btn btn-default" do %>
-           <%= fa_icon("twitter lg") %> LOG IN WITH TWITTER
-         <% end %>
-       <% else %>
-         <%= button_to "Logout!!!", "/logout", method: :delete, class: "btn btn-default" %>
-       <% end %>
-     </div>
+<% if current_user.nil? %>
+  <body id="welcome-page">
+    <%= render 'shared/header' %>
+    <%= flash[:notice] if !flash[:notice].nil? %>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <div class="transbox">
+           <div class="login-links">
+             <%= link_to "/auth/vimeo", class: "btn btn-default" do %>
+               <%= image_tag "1452218356_vimeo.png" %>
+               <p class="login-button">log in with vimeo</p>
+             <% end %>
+             <%= link_to "/auth/twitter", class: "btn btn-default" do %>
+               <%= image_tag "1452218263_twitter.png" %>
+               <p class="login-button">log in with twitter</p>
+             <% end %>
+           </div>
+        </div>
       </div>
     </div>
-  </div>
-
-
-  <div class="sticky-footer">
-    <%= render 'shared/footer' %>
-  </div>
-</body>
+    <div class="sticky-footer">
+      <%= render 'shared/footer' %>
+    </div>
+  </body>
+<% else %>
+  <body id="feed-page">
+    <%= render 'shared/header' %>
+    <%= flash[:notice] if !flash[:notice].nil? %>
+    <div class="sticky-footer">
+      <%= render 'shared/footer' %>
+    </div>
+  </body>
+<% end %>

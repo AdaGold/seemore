@@ -36,13 +36,13 @@ class SessionsController < ApplicationController
         @identity.user = @user
         @identity.save
         self.current_user = @identity.user
-        redirect_to root_path, notice: "Signed in!"
+        redirect_to root_path, notice: "Completely new!"
       end
     end
   end
 
   def destroy
     self.current_user = nil
-    redirect_to root_url, notice: "Signed out!"
+    redirect_to root_path, notice: "Signed out!"
   end
 end
