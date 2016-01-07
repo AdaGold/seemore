@@ -28,21 +28,21 @@ class SessionsController < ApplicationController
       if @identity.user.present?
         # user has signed in to site before, our application can find the identity and it is already associated with a user in our database.
         #this sets the session
-        current_user = @identity.user
+        self.current_user = @identity.user
         redirect_to root_path, notice: "Signed in!"
       else
         # user has not signed in to the site with either account (twitter or vimeo); it's a completely new user.
         @user = User.create_with_omniauth(auth["info"])
         @identity.user = @user
         @identity.save
-        current_user = @identity.user
+        self.current_user = @identity.user
         redirect_to root_path, notice: "Completely new!"
       end
     end
   end
 
   def destroy
-    current_user = nil
+    self.current_user = nil
     redirect_to root_path, notice: "Signed out!"
   end
 end
