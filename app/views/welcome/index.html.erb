@@ -2,13 +2,18 @@
 </div>
 <div class="container">
   <div class="login-links">
-    <%= link_to "/auth/instagram" do %>
-      <%= fa_icon("instagram lg") %> LOG IN WITH INSTAGRAM
+  <% unless current_user %>
+    <%= link_to "/auth/vimeo" do %>
+      <%= fa_icon("vimeo lg") %> LOG IN WITH VIMEO
     <% end %>
-    <%= link_to "/auth/instagram" do %>
+    <%= link_to "/auth/twitter" do %>
       <%= fa_icon("twitter lg") %> LOG IN WITH TWITTER
     <% end %>
+  <% else %>
+    <%= button_to "Logout!!!", "/logout", method: :delete, class: "btn btn-default" %> 
+  <% end %>
   </div>
+  <%= flash[:notice] if !flash[:notice].nil? %>
   <p>
     I'm testing scrolling content, Hi thar!
   </p>
@@ -121,5 +126,3 @@
     I'm testing scrolling content, Hi thar!
   </p>
 </div>
-
-<%= flash[:notice] if !flash[:notice].nil? %>
