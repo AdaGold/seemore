@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 20160107215543) do
 
   create_table "handles", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "description"
     t.string   "uri"
     t.string   "profile_image_uri"
-    t.integer  "twitter_id"
+    t.integer  "twitter_id",        limit: 8
   end
 
   create_table "handles_users", id: false, force: :cascade do |t|
