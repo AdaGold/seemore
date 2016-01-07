@@ -18,7 +18,7 @@ class Handle < ActiveRecord::Base
     handle.name = hash["name"]
     handle.description = hash["description"]
     handle.uri = hash["uri"]
-    handle.uri_image_profile = hash["uri_image_profile"]
+    handle.profile_image_uri = hash["profile_image_uri"]
     handle.save
   end
 end
