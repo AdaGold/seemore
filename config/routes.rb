@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  # testing only! if Ricky forgets to remove this, kindly remind them
+  get '/testing' => 'media#testing'
+
   # users route
   get '/users/:id' => 'users#show' # gets user's account page
-  
+
   # handles routes
   resources :handles, :only => :show # show a twitter handle's feed
   get 'search/:query' => 'handles#search', :as => 'search' # search all posts
