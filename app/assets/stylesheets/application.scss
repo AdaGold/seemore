@@ -15,6 +15,10 @@
  @import "bootstrap";
  @import "font-awesome";
 
+body {
+  padding-top: 70px;
+}
+
 .navbar-brand.nav-logo {
   font-family: 'Pacifico', cursive;
   font-size: 25px;
@@ -25,13 +29,21 @@
   margin-bottom: 0;
 }
 
-.front-page {
+#front-page {
   position: fixed;
   z-index: -1;
   width: 100%;
   height: 95%;
-  background-image: url(http://www.planwallpaper.com/static/images/518164-backgrounds.jpg); /* Hi, I'm just a placeholder image */
+  background-image: url(http://a.tday.us/wp-content/uploads/sites/6/2014/10/thanksgiving-table-setting-ideas-116.jpg); /* Hi, I'm just a placeholder image */
   background-size: cover;
+}
+
+div.transbox {
+  margin-top: 200px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.9;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 
 .login-links {
