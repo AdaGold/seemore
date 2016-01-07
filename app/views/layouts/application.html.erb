@@ -8,10 +8,10 @@
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div class="container">
     <%= render 'shared/header' %>
     <%= yield %>
-    <%= render 'shared/footer' %>
-  </div>
+    <div class="sticky-footer">
+      <%= render 'shared/footer' %>
+    </div>
 </body>
 </html>

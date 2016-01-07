@@ -3,6 +3,7 @@ class CreateMedia < ActiveRecord::Migration
     create_table :media do |t|
       t.string :url
       t.string :type
+      t.belongs_to :handle, index: true
 
       t.timestamps null: false
     end
