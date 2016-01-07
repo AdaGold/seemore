@@ -12,6 +12,6 @@ class HandlesController < ApplicationController
   end
 
   def search
-
+    Handle.search(query)
   end
 end
