@@ -10,11 +10,8 @@ class Handle < ActiveRecord::Base
   end
 
   def self.create_handle(twitter_user_instance)
-    # not sure whre hash will come from
-    # in the omniauth ex from class, auth = request.env['omniauth.auth'],
-    # which is sent from the sessions#create
-
-    # this will come from twitter gem???
+    # twitter_user_instance will come from twitter gem (ex: calling $twitter.user("houglande"),
+    # which returns an instance of their twitter::user class)
 
     handle = Handle.new
     handle.name = twitter_user_instance.name
