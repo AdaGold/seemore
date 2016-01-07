@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    self.current_user = nil
+    current_user = nil
     redirect_to root_url, notice: "Signed out!"
   end
 end
