@@ -4,16 +4,21 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
       <div class="transbox">
-        <p>
-          Something
-        </p>
         <div class="login-links">
        <% unless current_user %>
          <%= link_to "/auth/vimeo", class: "btn btn-default" do %>
-           <%= fa_icon("vimeo lg") %> LOG IN WITH VIMEO
+           <%# fa_icon("vimeo lg") %>
+           <%= image_tag "1452218356_vimeo.png" %>
+           <p>
+             LOG IN WITH VIMEO
+           </p>
          <% end %>
          <%= link_to "/auth/twitter", class: "btn btn-default" do %>
-           <%= fa_icon("twitter lg") %> LOG IN WITH TWITTER
+           <%# fa_icon("twitter lg") %>
+           <%= image_tag "1452218263_twitter.png" %>
+           <p>
+             LOG IN WITH TWITTER
+           </p>
          <% end %>
        <% else %>
          <%= button_to "Logout!!!", "/logout", method: :delete, class: "btn btn-default" %>
