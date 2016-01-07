@@ -9,10 +9,12 @@ class Handle < ActiveRecord::Base
     @user = $twitter.user(user)
   end
 
-  def self.create(hash)
+  def self.create_handle(hash)
     # not sure whre hash will come from
     # in the omniauth ex from class, auth = request.env['omniauth.auth'],
     # which is sent from the sessions#create
+
+    # THIS WILL COME FROM TWITTER GEM ^^
 
     handle = Handle.new
     handle.name = hash["name"]
