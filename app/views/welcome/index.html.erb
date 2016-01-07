@@ -1,1 +1,13 @@
-<h1>Feed</h1>
+<div <%= 'class=front-page' unless @user %> >
+  <div class="login-links">
+    <%= link_to "/auth/instagram" do %>
+      <%= fa_icon("instagram lg") %> LOG IN WITH INSTAGRAM
+    <% end %>
+    <%= link_to "/auth/instagram" do %>
+      <%= fa_icon("twitter lg") %> LOG IN WITH TWITTER
+    <% end %>
+  </div>
+</div>
+<div class="feed">
+
+</div>
