@@ -29,12 +29,16 @@ body {
   margin-bottom: 0;
 }
 
-#front-page {
+#welcome-page {
   background: url(http://a.tday.us/wp-content/uploads/sites/6/2014/10/thanksgiving-table-setting-ideas-116.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+#feed-page {
+  background-color: #682960;
 }
 
 div.transbox {

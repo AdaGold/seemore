@@ -1,4 +1,5 @@
 class Identity < ActiveRecord::Base
+  validates :uid, :provider, presence: true
   belongs_to :user
 
   def self.find_with_omniauth(auth)
