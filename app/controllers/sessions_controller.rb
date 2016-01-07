@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         redirect_to root_path, notice: "Already linked that account!"
       else
         # Linking an identity with the signed in user.  Identity hasn't previously been linked with user.
-        # need to add code to stop before changing the identity's user; we want to give the user the option to merge accounts so the two identities point to the same user (one user gets deleted), but we want to make sure the user is ok and understands this first. See Daphne's drawing. 
+        # need to add code to stop before changing the identity's user; we want to give the user the option to merge accounts so the two identities point to the same user (one user gets deleted), but we want to make sure the user is ok and understands this first. See Daphne's drawing.
         @identity.user = current_user
         @identity.save
         redirect_to root_path, notice: "Successfully linked that account!"
