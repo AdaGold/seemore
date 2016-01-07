@@ -9,11 +9,6 @@ class SessionsController < ApplicationController
     if @identity.nil?
       # If no identity was found, create a brand new one here
       @identity = Identity.create_with_omniauth(auth)
-      @user = User.create_with_omniauth(auth["info"])
-      @identity.user_id = @user.id
-      @identity.save
-    else
-      @user = @identity.user
     end
 
     if signed_in?
@@ -29,8 +24,17 @@ class SessionsController < ApplicationController
         self.current_user = @identity.user
         redirect_to root_path, notice: "Signed in!"
       else
-        redirect_to root_path, notice: "Please finish registering"
+        @user = User.create_with_omniauth(auth["info"])
+        @identity.user = @user
+        @identity.save
+        self.current_user = @identity.user
+        redirect_to root_path, notice: "Signed in!"
       end
     end
+  end
+
+  def destroy
+    self.current_user = nil
+    redirect_to root_url, notice: "Signed out!"
   end
 end
