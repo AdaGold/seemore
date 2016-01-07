@@ -1,12 +1,10 @@
 class Handle < ActiveRecord::Base
   has_many :media
   has_and_belongs_to_many :users
+  validates :name, :twitter_id, :uri, presence: true
 
   def self.search(query)
-  end
 
-  def self.fetch_user(user)
-    @user = $twitter.user(user)
   end
 
   def self.create_handle(twitter_user_instance)
