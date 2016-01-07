@@ -29,8 +29,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'httparty'
 gem 'omniauth'
+gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-twitter'
-gem 'omniauth-instagram'
+gem 'omniauth-vimeo'
 
 gem 'twitter', '~> 5.15'
 
