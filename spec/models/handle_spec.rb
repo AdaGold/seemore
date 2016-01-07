@@ -28,11 +28,12 @@ RSpec.describe Handle, type: :model do
   end
 
   describe ".create_handle" do
-    it "adds an isntance of Handle" do
-      expect(Handle.all.count).to eq 0
-      # binding.pry
-      Handle.create_handle(twitter_user_instance)
-      expect(Handle.all.count).to eq 1
+    context "when given an instance of Twitter::User" do
+      it "adds an instance of Handle" do
+        expect(Handle.all.count).to eq 0
+        Handle.create_handle(twitter_user_instance)
+        expect(Handle.all.count).to eq 1
+      end
     end
   end
 end
