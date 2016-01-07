@@ -1,128 +1,30 @@
-<div class="front-page">
-</div>
-<div class="container">
-  <div class="login-links">
-  <% unless current_user %>
-    <%= link_to "/auth/vimeo", class: "btn btn-default" do %>
-      <%= fa_icon("vimeo lg") %> LOG IN WITH VIMEO
-    <% end %>
-    <%= link_to "/auth/twitter", class: "btn btn-default" do %>
-      <%= fa_icon("twitter lg") %> LOG IN WITH TWITTER
-    <% end %>
-  <% else %>
-    <%= button_to "Logout!!!", "/logout", method: :delete, class: "btn btn-default" %>
-  <% end %>
+<body id="front-page">
+  <%= render 'shared/header' %>
+
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="transbox">
+        <p>
+          Something
+        </p>
+        <div class="login-links">
+       <% unless current_user %>
+         <%= link_to "/auth/vimeo", class: "btn btn-default" do %>
+           <%= fa_icon("vimeo lg") %> LOG IN WITH VIMEO
+         <% end %>
+         <%= link_to "/auth/twitter", class: "btn btn-default" do %>
+           <%= fa_icon("twitter lg") %> LOG IN WITH TWITTER
+         <% end %>
+       <% else %>
+         <%= button_to "Logout!!!", "/logout", method: :delete, class: "btn btn-default" %>
+       <% end %>
+     </div>
+      </div>
+    </div>
   </div>
-  <%= flash[:notice] if !flash[:notice].nil? %>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-  <p>
-    I'm testing scrolling content, Hi thar!
-  </p>
-</div>
+
+
+  <div class="sticky-footer">
+    <%= render 'shared/footer' %>
+  </div>
+</body>
