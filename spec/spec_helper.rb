@@ -48,6 +48,15 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.before(:suite) do
+    OmniAuth.config.test_mode = true
+    # The mock_auth configuration allows you to
+    # set per-provider (or default) authentication
+    # hashes to return during testing.
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({:provider => 'twitter', :uid => '123545', info: {name: "Ada"}})
+    OmniAuth.config.mock_auth[:vimeo] = OmniAuth::AuthHash.new({:provider => 'vimeo', :uid => '123545', info: {name: "Ada"}})
+  end
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
