@@ -9,22 +9,23 @@ RSpec.describe Medium, type: :model do
     context "when created with good parameters" do
       it "will be valid" do
         expect(Medium.new(type: "Tweet", handle_id: 1, uri: "website")).to be_valid
+        expect(Medium.new(type: "Video", handle_id: 1, uri: "website")).to be_valid
       end
     end
 
-    # context "when created with any bad parameters" do
-    #   it "will not be valid" do
-    #     expect(Medium.new(name: nil, twitter_id: 1, uri: "link")).to be_invalid
-    #     expect(Medium.new(name: "example", twitter_id: nil, uri: "link")).to be_invalid
-    #     expect(Medium.new(name: "example", twitter_id: 1, uri: nil)).to be_invalid
-    #   end
+    context "when created with any bad parameters" do
+      it "will not be valid" do
+        expect(Medium.new(type: nil, handle_id: 1, uri: "website")).to be_invalid
+        expect(Medium.new(type: "Tweet", handle_id: nil, uri: "website")).to be_invalid
+        expect(Medium.new(type: "Tweet", handle_id: 1, uri: nil)).to be_invalid
+      end
     #   it "will not save to database" do
     #     Medium.create(name: nil, twitter_id: 1, uri: "link")
     #     Medium.create(name: "example", twitter_id: nil, uri: "link")
     #     Medium.create(name: "example", twitter_id: 1, uri: nil)
     #     expect(Medium.all.count).to eq 0
     #   end
-    # end
+    end
   end
 
   # describe ".create_Medium" do
