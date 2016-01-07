@@ -5,7 +5,7 @@ class Handle < ActiveRecord::Base
   def self.search(query)
   end
 
-  def fetch_user(user)
+  def self.fetch_user(user)
     @user = $twitter.user(user)
   end
 end
