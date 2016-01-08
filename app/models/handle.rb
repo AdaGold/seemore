@@ -4,8 +4,7 @@ class Handle < ActiveRecord::Base
   validates :name, :twitter_id, :uri, presence: true
 
   def self.search(query)
-    @results = []
-    @results.push($twitter.user(query))
+    @results = $twitter.user_search(query)
   end
 
   def self.create_handle(twitter_user_instance)

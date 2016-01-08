@@ -49,7 +49,7 @@ RSpec.describe Handle, type: :model do
     end
     it "returns correct instance of Twitter::User" do
       search_results = Handle.search("houglande")
-      expect(search_results[0].id).to eq 18424269
+      expect(search_results).to include(twitter_user_instance)
     end
   end
 end
