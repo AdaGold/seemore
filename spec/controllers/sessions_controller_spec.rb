@@ -14,7 +14,13 @@ RSpec.describe SessionsController, type: :controller  do
           end
         end
         context "user links with a second provider" do
-          #
+          before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
+          it "redirects to home page" do
+            get :create, provider: :twitter
+            request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:vimeo]
+            get :create, provider: :vimeo
+            expect(response).to redirect_to root_path
+          end
         end
       end
 
