@@ -36,4 +36,20 @@ RSpec.describe Handle, type: :model do
       end
     end
   end
+
+  describe ".search" do
+    before(:each) do
+      Handle.create(name: "houglande", twitter_id: 1, uri: "link")
+    end
+    it "returns array" do
+      expect(Handle.search("houglande")).to be_kind_of(Array)
+    end
+    it "returns array of Twitter::User instances" do
+      expect(Handle.search("houglande")[0]).to be_an_instance_of(Twitter::User)
+    end
+    it "returns correct instance of Twitter::User" do
+      search_results = Handle.search("houglande")
+      expect(search_results[0].id).to eq 18424269
+    end
+  end
 end
