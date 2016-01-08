@@ -29,5 +29,13 @@ module Vimeo
       return user_object_array
     end
 
+    def self.get_user_videos(user_uri, page=1)
+      query = "fields=name,description,embed"
+
+      response = HTTParty.get("#{BASE_URI}/#{user_uri}/videos?#{query}", headers: HEADERS)
+      parsed_response = JSON.parse(response)
+
+    end
+
   end
 end
