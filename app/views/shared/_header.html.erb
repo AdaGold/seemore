@@ -18,7 +18,12 @@
         <li><%= link_to "Log out", logout_path, method: :delete %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Settings", user_path(current_user) %></li>
+        <li>
+          <%= link_to user_path(current_user), class: "btn menu-button" do %>
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            <span class="menu-word">Settings</span>
+          <% end %>
+        </li>
       </ul>
     <% end %>
   </div>
