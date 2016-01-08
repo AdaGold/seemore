@@ -14,4 +14,10 @@ class HandlesController < ApplicationController
   def search
     Handle.search(query)
   end
+
+  def search_vimeo
+    name = params[:query]
+
+    @search_results = Vimeo::User.find_by_name(name)
+  end
 end

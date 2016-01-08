@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   get '/users/:id' => 'users#show', as: :user # gets user's account page
 
   # handles routes
-  resources :handles, :only => :show # show a twitter handle's feed
+  resources :handles, :only => [:index, :show] # show a twitter handle's feed
   get 'search/:query' => 'handles#search', :as => 'search' # search all posts
+  get '/search' => 'handles#search_vimeo', :as => 'search_vimeo' # search vimeo
+
 
   # media routes
   post 'handles/:id' => 'handles#add' # add twitter account to user's feed
