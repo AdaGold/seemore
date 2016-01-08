@@ -2,7 +2,11 @@
   <%= render 'shared/header' %>
   <div class="row">
     <div class=".col-md-12">
-      Hello! User Setttings
+      <h1>Account Settings</h1>
+      <h3>Linked Accounts:</h3>
+        <% @user.identities.each do |i| %>
+          <%= i.provider.capitalize %>
+        <% end %>
     </div>
   </div>
   <div class="sticky-footer">
