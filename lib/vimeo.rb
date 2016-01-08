@@ -1,4 +1,3 @@
 module Vimeo
-
-  autoload :User, "vimeo/user.rb"
+  # autoload :User, "vimeo/user.rb"
 end
