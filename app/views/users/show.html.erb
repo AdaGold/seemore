@@ -1,12 +1,17 @@
 <body id="settings-page">
   <%= render 'shared/header' %>
   <div class="row">
-    <div class=".col-md-12">
-      <h1>Account Settings</h1>
-      <h3>Linked Accounts:</h3>
-        <% @user.identities.each do |i| %>
-          <%= i.provider.capitalize %>
-        <% end %>
+    <div class="container">
+      <h2>Account Settings</h2>
+      <div class="panel panel-default">
+        <div class="panel-heading">Linked Accounts:</div>
+        <div class="panel-body">
+          <% @user.identities.each do |i| %>
+            <%= i.provider.capitalize %>
+          <% end %>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
   <div class="sticky-footer">
