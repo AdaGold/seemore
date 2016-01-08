@@ -34,10 +34,11 @@ RSpec.describe SessionsController, type: :controller  do
           end
         end
         context "is logging in with a new identity" do
-
           before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
+          it "increases user count by 1" do
+            expect { get :create, provider: :twitter }.to change(User, :count).by(1)
+          end
           it "redirects to home page" do
-            User.destroy_all
             get :create, provider: :twitter
             expect(response).to redirect_to root_path
           end
