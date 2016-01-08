@@ -14,26 +14,20 @@ RSpec.describe SessionsController, type: :controller  do
           end
         end
         context "user links with a second provider" do
-          before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
-          before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:vimeo] }
-          it "redirects to home page" do
-            get :create, provider: :twitter
-            get :create, provider: :vimeo
-            expect(response).to redirect_to root_path
-          end
+          #
         end
       end
 
       context "user wasn't logged in" do
-        context "is a completely new user" do
+        context "is logging in with a new identity" do
           before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
           it "redirects to home page" do
             get :create, provider: :twitter
             expect(response).to redirect_to root_path
           end
         end
-        context "user logs in with a previously used account" do
-          
+        context "is logging in with a previously used identity" do
+          #
         end
       end
     end
