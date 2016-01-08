@@ -1,7 +1,6 @@
 <% if current_user.nil? %>
   <body id="welcome-page">
     <%= render 'shared/header' %>
-    <%= flash[:notice] if !flash[:notice].nil? %>
     <div class="row">
       <div class="col-sm-4 col-sm-offset-4">
         <div class="transbox">
@@ -25,7 +24,6 @@
 <% else %>
   <body id="feed-page">
     <%= render 'shared/header' %>
-    <%= flash[:notice] if !flash[:notice].nil? %>
     <div class="sticky-footer">
       <%= render 'shared/footer' %>
     </div>
