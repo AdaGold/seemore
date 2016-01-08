@@ -1,3 +1,5 @@
+require 'vimeo'
+
 class HandlesController < ApplicationController
   def show
     @handle = Handle.find(params[:id])
