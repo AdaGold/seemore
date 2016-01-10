@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   get 'search/:query' => 'handles#search', :as => 'search' # search all posts
   get '/search' => 'handles#search_vimeo', :as => 'search_vimeo' # search vimeo
 
-
   # media routes
   post 'handles/:id' => 'handles#add' # add twitter account to user's feed
+  # KD note: may not need both this route and the above route:
+  post '/subscribe' => 'handles#subscribe', :as => 'subscribe' # creates handle object if it doesn't exits, associates handle with user
   delete 'users/:user_id/handles/:id' => 'handles#remove' # delete twitter account from user's feed
 
   # sessions routes

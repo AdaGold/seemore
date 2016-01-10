@@ -1,5 +1,9 @@
 <% @search_results.each do |handle| %>
   <p>
     <%= link_to handle.name, handle.link %>
+    <%= link_to subscribe_path, class: "btn menu-button", method: :post do %>
+      <label class="sr-only">Subscribe</label>
+      <span class="glyphicon glyphicon-plus"></span>
+    <% end %>
   </p>
 <% end %>

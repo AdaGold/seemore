@@ -9,6 +9,11 @@ class HandlesController < ApplicationController
 
   end
 
+  def subscribe
+    flash[:success] = "Subscription added!"
+    redirect_to user_path(current_user)
+  end
+
   def remove
 
   end
