@@ -12,7 +12,12 @@
         </div>
         <div class="panel-heading">Vimeo Subscriptions:</div>
         <div class="panel-body">
-          TBD
+          <div class="panel-body">
+            <% @vimeo_handles.each do |h| %>
+              <%= h.name %>
+              <br>
+            <% end %>
+          </div>
         </div>
         <div class="panel-heading">Twitter Subscriptions:</div>
         <div class="panel-body">

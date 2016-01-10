@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(info)
     create(name: info["name"])
   end
+
+  def find_vimeo_handles
+    self.handles.find_all do |handle|
+      handle.provider == "vimeo"
+    end
+  end
 end

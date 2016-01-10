@@ -24,7 +24,8 @@ class Handle < ActiveRecord::Base
   def self.create_vimeo_handle(hash)
     Handle.create(
       name: hash["name"],
-      uri: hash["uri"]
+      uri: hash["uri"],
+      provider: "vimeo"
     )
   end
 end
