@@ -10,8 +10,21 @@ class HandlesController < ApplicationController
   end
 
   def subscribe
-    flash[:success] = "Subscription added!"
-    redirect_to user_path(current_user)
+    handle_uri = params["handle_uri"]
+    handle = Handle.find_by_uri(handle_uri)
+    if handle.nil?
+      response = HTTParty.get("https://api.vimeo.com/#{handle_uri}", headers: { "Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}" })
+      parsed_response = JSON.parse(response)
+      handle = Handle.create_vimeo_handle(parsed_response)
+    end
+    if current_user.handles.include?(handle)
+      flash[:error] = "Already subscribed!"
+      redirect_to :back
+    else
+      current_user.handles << handle unless current_user.handles.include?(handle)
+      flash[:success] = "Subscription added!"
+      redirect_to user_path(current_user)
+    end
   end
 
   def remove
