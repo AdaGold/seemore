@@ -5,13 +5,21 @@
       <h2>Account Settings</h2>
       <div class="panel panel-default">
         <div class="panel-heading">Linked Accounts:</div>
-        <div class="panel-body">
-          <% @user.identities.each do |i| %>
-            <%= i.provider.capitalize %>
-          <% end %>
+          <div class="panel-body">
+            <% @user.identities.each do |i| %>
+              <%= i.provider.capitalize %>
+            <% end %>
+            <% unless @user.identities.length == 2 %>
+              <h4>Link Another Account</h4>
+              <%= link_to "/auth/twitter", class: "btn btn-default" do %>
+                <%= fa_icon("twitter lg") %>
+              <% end %>
+              <%= link_to "/auth/vimeo", class: "btn btn-default" do %>
+                <%= fa_icon("vimeo lg") %>
+              <% end %>
+            <% end %>
         </div>
       </div>
-    </div>
     </div>
   </div>
   <div class="sticky-footer">
