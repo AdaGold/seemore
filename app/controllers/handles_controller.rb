@@ -13,9 +13,7 @@ class HandlesController < ApplicationController
     handle_uri = params["handle_uri"]
     handle = Handle.find_by_uri(handle_uri)
     if handle.nil?
-      response = HTTParty.get("https://api.vimeo.com/#{handle_uri}", headers: { "Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}" })
-      parsed_response = JSON.parse(response)
-      handle = Handle.create_vimeo_handle(parsed_response)
+      handle = Handle.create_vimeo_handle(handle_uri)
     end
     if current_user.handles.include?(handle)
       flash[:error] = "Already subscribed!"
