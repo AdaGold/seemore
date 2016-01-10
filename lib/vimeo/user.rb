@@ -8,11 +8,13 @@ module Vimeo
     # base_uri 'api.vimeo.com'
 
     attr_reader :uri, :name, :link
+    attr_accessor :subscribed
 
     def initialize(user_hash)
       @uri = user_hash["uri"]
       @name = user_hash["name"]
       @link = user_hash["link"]
+      @subscribed = false
     end
 
     def self.find_by_name(user_name, page=1)
