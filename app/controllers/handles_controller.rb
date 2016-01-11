@@ -48,18 +48,27 @@ class HandlesController < ApplicationController
   end
 
   def search
-    Handle.search(query)
-  end
-
-  def search_vimeo
     name = params[:query]
 
-    @search_results = Vimeo::User.find_by_name(name)
-    @search_results.each do |sr|
+    @vimeo_search_results = Vimeo::User.find_by_name(name)
+    @vimeo_search_results.each do |sr|
       handle = Handle.find_by_uri(sr.uri)
       if current_user.handles.include?(handle)
         sr.subscribed = true
       end
     end
+    @twitter_search_results = $twitter.user_search(name)
   end
+
+  # def search_vimeo
+  #   name = params[:query]
+  #
+  #   @search_results = Vimeo::User.find_by_name(name)
+  #   @search_results.each do |sr|
+  #     handle = Handle.find_by_uri(sr.uri)
+  #     if current_user.handles.include?(handle)
+  #       sr.subscribed = true
+  #     end
+  #   end
+  # end
 end

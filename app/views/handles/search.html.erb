@@ -1,0 +1,38 @@
+<div class="pull-left">
+  <h1>Vimeo Search Results</h1>
+  <% @vimeo_search_results.each do |handle| %>
+    <p>
+      <%= link_to handle.name, handle.link %>
+        <% if handle.subscribed %>
+          <%= link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
+            <label class="sr-only">Unsubscribe</label>
+            <span class="glyphicon glyphicon-minus"></span>
+          <% end %>
+        <% else %>
+          <%= link_to subscribe_path(:handle_uri => handle.uri, :type => "vimeo"), class: "btn menu-button", method: :post do %>
+            <label class="sr-only">Subscribe</label>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        <% end %>
+    </p>
+  <% end %>
+</div>
+<div class="pull-right">
+  <h1>Twitter Search Results</h1>
+  <% @twitter_search_results.each do |handle| %>
+    <p>
+      <%= link_to handle.screen_name, handle.uri.to_s %>
+        <%# if handle.subscribed %>
+          <%# link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
+            <!-- <label class="sr-only">Unsubscribe</label>
+            <span class="glyphicon glyphicon-minus"></span> -->
+          <%# end %>
+        <%# else %>
+          <%# link_to subscribe_path(:handle_uri => handle.uri, :type => "vimeo"), class: "btn menu-button", method: :post do %>
+            <!-- <label class="sr-only">Subscribe</label>
+            <span class="glyphicon glyphicon-plus"></span> -->
+          <%# end %>
+        <%# end %>
+    </p>
+  <% end %>
+</div>
