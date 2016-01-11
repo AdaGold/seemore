@@ -1,7 +1,6 @@
 class Handle < ActiveRecord::Base
   has_many :media
   has_and_belongs_to_many :users
-  # KD note: removed requirement of twitter_id so this can work for vimeo handles
   validates :name, :uri, presence: true
 
   def self.search(query)

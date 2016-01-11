@@ -1,5 +1,3 @@
-require 'uri'
-
 module Vimeo
   class User
     BASE_URI = "https://api.vimeo.com"
