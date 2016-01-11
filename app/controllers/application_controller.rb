@@ -25,4 +25,11 @@ class ApplicationController < ActionController::Base
     @current_user = user
     session[:user_id] = user.nil? ? nil : user.id
   end
+
+  def require_login
+    unless current_user
+      flash[:error] = "Please log in to view this section."
+      redirect_to root_path
+    end
+  end
 end
