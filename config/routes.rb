@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  # testing only! if Ricky forgets to remove this, kindly remind them
-  get '/testing' => 'media#testing'
-
   # users route
   get '/users/:id' => 'users#show', as: :user # gets user's account page
 
