@@ -1,10 +1,5 @@
 module Vimeo
-  class User
-    BASE_URI = "https://api.vimeo.com"
-    HEADERS = { "Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}" }
-    # include HTTParty
-    # base_uri 'api.vimeo.com'
-
+  class User < Base
     attr_reader :uri, :name, :link
     attr_accessor :subscribed
 
@@ -33,15 +28,6 @@ module Vimeo
       end
 
       return user_object_array
-    end
-
-    def self.get_user_videos(user_uri, page=1)
-      query = "fields=name,description,embed"
-
-      response = HTTParty.get("#{BASE_URI}/#{user_uri}/videos?#{query}", headers: HEADERS)
-      parsed_response = JSON.parse(response)
-
-      # a.gsub!(/\"/, '\'')
     end
 
   end

@@ -1,5 +1,7 @@
+require 'vimeo/base'
 require 'vimeo/user'
+require 'vimeo/video'
 
 module Vimeo
-  # autoload :User, "vimeo/user.rb"
+
 end
