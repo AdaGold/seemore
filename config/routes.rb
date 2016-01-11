@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   delete 'users/:user_id/handles/:id' => 'handles#remove' # delete twitter account from user's feed
 
   # sessions routes
+  get "/auth/developer/callback", to: "sessions#create"
+
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/logout", to: 'sessions#destroy', as: :logout
 
