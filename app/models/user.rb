@@ -13,4 +13,9 @@ class User < ActiveRecord::Base
       handle.provider == "vimeo"
     end
   end
+
+  def merge_user_accounts(other_account)
+    self.handles += other_account.handles
+    other_account.destroy
+  end
 end
