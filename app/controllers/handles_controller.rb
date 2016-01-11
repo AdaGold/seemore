@@ -19,7 +19,7 @@ class HandlesController < ApplicationController
       flash[:error] = "Already subscribed!"
       redirect_to :back
     else
-      current_user.handles << handle unless current_user.handles.include?(handle)
+      current_user.handles << handle 
       flash[:success] = "Subscription added!"
       redirect_to user_path(current_user)
     end

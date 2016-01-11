@@ -21,12 +21,11 @@ class Handle < ActiveRecord::Base
     handle.save
   end
 
-  def self.create_vimeo_handle(handle_uri)
-    response = HTTParty.get("https://api.vimeo.com/#{handle_uri}", headers: { "Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}" })
-    parsed_response = JSON.parse(response)
+  def self.create_vimeo_handle(uri)
+    user = Vimeo::User.find_by_uri(uri)
     Handle.create(
-      name: parsed_response["name"],
-      uri: parsed_response["uri"],
+      name: user.name,
+      uri: user.uri,
       provider: "vimeo"
     )
   end

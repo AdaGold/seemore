@@ -17,6 +17,12 @@ module Vimeo
       @subscribed = false
     end
 
+    def self.find_by_uri(handle_uri)
+      response = HTTParty.get("#{BASE_URI}#{handle_uri}", headers: HEADERS)
+      parsed_response = JSON.parse(response)
+      self.new(parsed_response)
+    end
+
     def self.find_by_name(user_name, page=1)
       query = { query: user_name, page: page, fields: "uri,name,link" }
 
