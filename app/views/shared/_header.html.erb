@@ -1,8 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand nav-logo" href="#">FancyFeed</a>
+      <a class="navbar-brand nav-logo" href="/">FancyFeed</a>
     </div>
+    <% if current_user %>
     <ul class="nav navbar-nav navbar-left">
       <li>
         <%= form_tag(search_path, :method => "get", class: "navbar-form", id: "search-form") do %>
@@ -13,7 +14,6 @@
         <% end %>
       </li>
     </ul>
-    <% if current_user %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Log out", logout_path, method: :delete %></li>
       </ul>

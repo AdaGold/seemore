@@ -1,6 +1,5 @@
 <% if current_user.nil? %>
   <body id="welcome-page">
-    <%= render 'shared/header' %>
     <div class="row">
       <div class="col-sm-4 col-sm-offset-4">
         <div class="transbox">
@@ -17,16 +16,10 @@
         </div>
       </div>
     </div>
-    <div class="sticky-footer">
-      <%= render 'shared/footer' %>
-    </div>
   </body>
 <% else %>
   <body id="feed-page">
     <%= render 'shared/header' %>
     <%= render 'shared/feed' %>
-    <div class="sticky-footer">
-      <%= render 'shared/footer' %>
-    </div>
   </body>
 <% end %>
