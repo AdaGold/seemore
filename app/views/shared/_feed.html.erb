@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="feed-header-bgd">
-    <h1 id="timeline">Your Fancy Feed</h1>
+    <h1 id="timeline"><%= current_user.name %>'s FancyFeed</h1>
   </div>
 </div>
 <ul class="timeline">
@@ -14,15 +14,15 @@
 
       <!-- decide which icon to display (pencil or video) -->
       <% if medium.type == "Video" %>
-      <div class="timeline-badge success"><i class="glyphicon glyphicon-facetime-video"></i></div>
+      <div class="timeline-badge muted"><i class="glyphicon glyphicon-facetime-video"></i></div>
       <% elsif medium.type == "Tweet" %>
-      <div class="timeline-badge success"><i class="glyphicon glyphicon-pencil"></i></div>
+      <div class="timeline-badge info"><i class="glyphicon glyphicon-pencil"></i></div>
       <% end %>
 
       <!-- add text or video -->
       <div class="timeline-panel">
         <div class="timeline-body">
-          <p><%= medium.handle.name %></p>
+          <p><%= link_to medium.handle.name, "http://#{medium.handle.uri}" %></p>
         </div>
         <div class="timeline-heading">
           <h4 class="timeline-title"><%= medium.text %></h4>
