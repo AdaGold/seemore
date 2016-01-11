@@ -29,12 +29,12 @@ end
 
 # media seeds
 media = [
-  { type: "Tweet", handle_id: "1", text: "look I'm tweeting" },
-  { type: "Tweet", handle_id: "1", text: "more tweeting wow" },
-  { type: "Tweet", handle_id: "2", text: "even more tweeting" },
-  { type: "Video", handle_id: "2", text: "I'm a video" },
-  { type: "Video", handle_id: "2", text: "I'm a second video" },
-  { type: "Video", handle_id: "1", text: "I'm a third video" }
+  { type: "Tweet", handle_id: "1", text: "look I'm tweeting", tweet_time: 1.hour.ago },
+  { type: "Tweet", handle_id: "1", text: "more tweeting wow", tweet_time: 2.hours.ago },
+  { type: "Tweet", handle_id: "2", text: "even more tweeting", tweet_time: 3.hours.ago },
+  { type: "Video", handle_id: "2", text: "I'm a video", tweet_time: 4.hours.ago },
+  { type: "Video", handle_id: "2", text: "I'm a second video", tweet_time: 1.day.ago },
+  { type: "Video", handle_id: "1", text: "I'm a third video", tweet_time: 3.days.ago }
 ]
 
 media.each do |medium|
