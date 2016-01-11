@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110071705) do
+ActiveRecord::Schema.define(version: 20160111005444) do
 
   create_table "handles", force: :cascade do |t|
     t.string   "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160110071705) do
     t.datetime "updated_at", null: false
     t.string   "text"
     t.string   "uri"
+    t.string   "embed"
   end
 
   add_index "media", ["handle_id"], name: "index_media_on_handle_id"

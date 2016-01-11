@@ -43,6 +43,7 @@ module Vimeo
       response = HTTParty.get("#{BASE_URI}/#{user_uri}/videos?#{query}", headers: HEADERS)
       parsed_response = JSON.parse(response)
 
+      # a.gsub!(/\"/, '\'')
     end
 
   end
