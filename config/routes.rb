@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post 'handles/:id' => 'handles#add' # add twitter account to user's feed
   # KD note: may not need both this route and the above route:
   post '/subscribe' => 'handles#subscribe', :as => 'subscribe' # creates handle object if it doesn't exits, associates handle with user
+  put '/unsubscribe' => 'handles#unsubscribe', :as => 'unsubscribe' # removes handle association with user; deletes handle from database if no more associated users
+
   delete 'users/:user_id/handles/:id' => 'handles#remove' # delete twitter account from user's feed
 
   # sessions routes
