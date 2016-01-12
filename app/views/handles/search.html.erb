@@ -9,7 +9,7 @@
             <span class="glyphicon glyphicon-minus"></span>
           <% end %>
         <% else %>
-          <%= link_to subscribe_path(:handle_uri => handle.uri, :type => "vimeo"), class: "btn menu-button", method: :post do %>
+          <%= link_to subscribe_path(:handle_uri => handle.uri, :provider => "vimeo"), class: "btn menu-button", method: :post do %>
             <label class="sr-only">Subscribe</label>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
