@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {
-    User.new(
-    name: "Ada"
-    )
-  }
+  let(:user) { build(:user1) }
+
+  let(:twitter_handle) { build(:twitter_handle) }
+
+  let(:vimeo_handle) { build(:vimeo_handle) }
+
+  let(:twitter_medium) { build(:twitter_medium) }
+
+  let(:vimeo_medium) { build(:vimeo_medium) }
 
   describe "validations" do
     it "is valid" do
@@ -22,6 +26,24 @@ RSpec.describe User, type: :model do
     it "creates a valid user" do
       user = User.create_with_omniauth(OmniAuth.config.mock_auth[:vimeo]["info"])
       expect(user).to be_valid
+    end
+  end
+
+  describe "#find_vimeo_handles" do
+    it "returns an array" do
+      user = User.create_with_omniauth(OmniAuth.config.mock_auth[:vimeo]["info"])
+      vimeo_handle.media << vimeo_medium
+      user.handles << vimeo_handle
+      expect(user.find_vimeo_handles).to be_kind_of(Array)
+    end
+  end
+
+  describe "#find_twitter_handles" do
+    it "returns an array" do
+      user = User.create_with_omniauth(OmniAuth.config.mock_auth[:vimeo]["info"])
+      twitter_handle.media << twitter_medium
+      user.handles << twitter_handle
+      expect(user.find_twitter_handles).to be_kind_of(Array)
     end
   end
 end

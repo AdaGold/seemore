@@ -12,7 +12,7 @@ class Handle < ActiveRecord::Base
     # which returns an instance of their twitter::user class)
     handle_instance = $twitter.user(handle_username)
     handle = Handle.new
-    handle.name = handle_instance.user_name
+    handle.name = handle_instance.screen_name
     handle.uri = handle_instance.uri
     handle.profile_image_uri = handle_instance.profile_image_uri
     handle.provider = "twitter"

@@ -8,15 +8,15 @@ RSpec.describe Handle, type: :model do
   describe ".validates" do
     context "when created with good parameters" do
       it "will be valid" do
-        expect(build(:handle)).to be_valid
+        expect(build(:twitter_handle)).to be_valid
       end
     end
 
     context "when created with any bad parameters" do
       it "will not be valid" do
-        expect(build(:handle, name: nil)).to be_invalid
-        expect(build(:handle, uri: nil)).to be_invalid
-        expect(build(:handle, provider: nil)).to be_invalid
+        expect(build(:twitter_handle, name: nil)).to be_invalid
+        expect(build(:twitter_handle, uri: nil)).to be_invalid
+        expect(build(:twitter_handle, provider: nil)).to be_invalid
       end
     end
   end
@@ -25,7 +25,7 @@ RSpec.describe Handle, type: :model do
     context "when given an instance of Twitter::User" do
       it "adds an instance of Handle" do
         expect(Handle.all.count).to eq 0
-        Handle.create_handle(twitter_user_instance)
+        Handle.create_twitter_handle(twitter_user_instance.screen_name)
         expect(Handle.all.count).to eq 1
       end
     end
@@ -33,7 +33,7 @@ RSpec.describe Handle, type: :model do
 
   describe ".search" do
     before(:each) do
-      create(:handle)
+      create(:twitter_handle)
     end
     it "returns array" do
       expect(Handle.search("houglande")).to be_kind_of(Array)
