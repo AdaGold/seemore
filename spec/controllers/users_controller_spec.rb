@@ -1,12 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  let(:user1) { create(:user1) }
+
+  before :each do
+    session[:user_id] = user1
+  end
+
   describe "#show" do
     it "redirects to root_path if user does not have permissions" do
-      user1 = create(:user1)
       user2 = create(:user2)
-      session[:user_id] = user1
       get :show, id: user2.id
+      expect(response).to redirect_to root_path
+    end
+
+    it "renders the show view" do
+      get :show, id: user1.id
+      expect(response).to render_template :show
+    end
+
+    it "redirects to root_path if user is not logged in" do
+      session[:user_id] = nil
+      get :show, id: user1.id
       expect(response).to redirect_to root_path
     end
   end
