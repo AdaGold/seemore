@@ -1,6 +1,8 @@
 require 'vimeo'
 
 class HandlesController < ApplicationController
+  before_action :require_login
+
   def show
     @handle = Handle.find(params[:id])
   end
@@ -15,7 +17,7 @@ class HandlesController < ApplicationController
     if handle.nil?
       handle = Handle.create_vimeo_handle(handle_uri)
       # retrieves 5 most recent posts
-      media = handle.media.order(tweet_time: :desc).limit(5)
+      media = handle.media.order(posted_at: :desc).limit(5)
       # they shouldn't be in the database anyway if the Handle is new, but just in case?
       media.each do |medium|
         medium.save if Medium.find_by(uri: medium.uri).empty?
