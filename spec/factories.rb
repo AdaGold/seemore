@@ -19,4 +19,10 @@ FactoryGirl.define do
     embed "link"
     posted_at Time.now
   end
+
+  factory :identity do
+    uid "1234"
+    provider "twitter"
+    user_id 1
+  end
 end
