@@ -21,26 +21,38 @@
         <div class="panel-heading">Vimeo Subscriptions:</div>
         <div class="panel-body">
           <div class="panel-body">
-            <% @vimeo_handles.each do |h| %>
-              <%= h.name %>
-              <%= link_to unsubscribe_path(:handle_uri => h.uri), class: "btn menu-button", :method => :put do %>
-                <label class="sr-only">Unsubscribe</label>
-                <span class="glyphicon glyphicon-minus"></span>
+            <% if @vimeo_handles.length == 0 %>
+              <p>
+                None :(
+              </p>
+            <% else %>
+              <% @vimeo_handles.each do |h| %>
+                <%= h.name %>
+                <%= link_to unsubscribe_path(:handle_uri => h.uri), class: "btn menu-button", :method => :put do %>
+                  <label class="sr-only">Unsubscribe</label>
+                  <span class="glyphicon glyphicon-minus"></span>
+                <% end %>
+                <br>
               <% end %>
-              <br>
             <% end %>
           </div>
         </div>
         <div class="panel-heading">Twitter Subscriptions:</div>
         <div class="panel-body">
           <div class="panel-body">
-            <% @twitter_handles.each do |t| %>
-              <%= t.name %>
-              <%= link_to unsubscribe_path(:handle_uri => t.uri), class: "btn menu-button", :method => :put do %>
-                <label class="sr-only">Unsubscribe</label>
-                <span class="glyphicon glyphicon-minus"></span>
+            <% if @twitter_handles.length == 0 %>
+              <p>
+                None :(
+              </p>
+            <% else %>
+              <% @twitter_handles.each do |t| %>
+                <%= t.name %>
+                <%= link_to unsubscribe_path(:handle_uri => t.uri), class: "btn menu-button", :method => :put do %>
+                  <label class="sr-only">Unsubscribe</label>
+                  <span class="glyphicon glyphicon-minus"></span>
+                <% end %>
+                <br>
               <% end %>
-              <br>
             <% end %>
           </div>
         </div>
