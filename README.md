@@ -1,8 +1,8 @@
-# SeeMore
+# FancyFeed
 
 ![SeeMore](http://www.theirishduck.info/wp-content/uploads/2013/06/plant.png)
 
-## About
+## Feasting on Feeds
 
 SeeMore is a student project of students in the 4th cohort of Ada Developers Academy. Team FancyFeed includes: [Ricky Hougland](https://github.com/hougland), [Jenna Nichols] (https://github.com/jennaplusplus), [Daphne Gold](https://github.com/daphnegold), and [Kelley Devlin](https://github.com/Kedevlin).
 
@@ -10,36 +10,18 @@ To view original project requirements, [click here](https://github.com/Ada-C4/se
 
 A **feed** is an API that a web service uses to provide users with frequently updated content. A *feed aggregator*  is an application that acts as a central location for reviewing the content of feeds. It **injests** feeds and stores their content in its own datastore after transforming it into a standard format.
 
-You and your team will build a feed aggregator service that allows users to login via Twitter, Github, Instagram and Vimeo. It will allow users to subscribe to updates from these feeds. Users can then view these updates all in one location as an aggregated feed.
+FancyFeed is a feed aggregator service that allows users to login via Twitter or Vimeo. Once logged in, a user can search for and subscribe to Vimeo and Twitter handles. FancyFeed pulls those handles' updates together into one aggregated feed on the homepage.
 
-## Goals
-+ Learn how to work with OAuth
-+ Gain experience in consuming with 3rd party APIs
-+ Coordinate with a larger team
-+ Accept challenges by working on parts of the project outside your individual comfort zone
-
-## Guidelines
-+ Teams of three or four will work with a Teacher acting as a Project Manager
-+ Teams will rotate team leader and standup leader roles on a weekly basis
-+ Practice TDD
-+ Spend time at the beginning creating user stories and defining precise requirements
+## Configuration
+- ruby version
+- fork, clone, bundle install
+- rake db:migrate, rake db:seed (though it works best if you log in as developer and add feeds manually)
+- log in using oauth developer strategy
 
 ### Technical Requirements
 #### Authentication
   - Allows Users to sign in and out using [OmniAuth's Developer Strategy](http://rubydoc.info/github/intridea/omniauth/master/OmniAuth/Strategies/Developer) in development only. This should not be enabled for Production (a.k.a. Heroku deployment)
   - Allows Users to sign-up and login with at least two social media accounts (Instagram, Twitter, Vimeo, Github)
-
-#### APIs
-  Choose two of the APIs below to implement:
-  - Twitter
-    - Search users
-    - Subscribe to a user's Twitter updates
-  - Vimeo
-    - Search users
-    - Subscribe to a user's Vimeo updates
-  - Instagram
-    - Search users
-    - Subscribe to a user's Instagram updates
 
 #### Functionality
   - A user can view all subscribed feeds on one page in chronological order
