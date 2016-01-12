@@ -19,7 +19,6 @@ module Vimeo
       parsed_response["data"].each do |hash|
         video_object_array << self.new(hash)
       end
-      binding.pry
       return video_object_array
 
       # a.gsub!(/\"/, '\'')
