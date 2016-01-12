@@ -24,6 +24,10 @@ class HandlesController < ApplicationController
         handle = Handle.create_twitter_handle(params["handle_username"])
       elsif provider == "vimeo"
         handle = Handle.create_vimeo_handle(handle_uri)
+        videos = Vimeo::Video.get_user_videos(handle.uri)
+        videos.each do |video|
+          Medium.create(handle_id: handle.id, uri: video.uri, embed: video.embed, posted_at: video.posted_at)
+        end
       end
     end
     if current_user.handles.include?(handle)
