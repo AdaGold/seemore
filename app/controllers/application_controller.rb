@@ -36,19 +36,27 @@ class ApplicationController < ActionController::Base
 
   def update_feed
     current_user.handles.each do |handle|
-      response = Vimeo::Video.get_user_videos(handle.uri) if handle.provider == "vimeo"
-      vimeo_media = Medium.all
+      response = []
+      response += Vimeo::Video.get_user_videos(handle.uri) if handle.provider == "vimeo"
+      response += $twitter.user_timeline(handle.name).take(5) if handle.provider == "twitter"
+      media = Medium.all
       tracked = Array.new
       untracked = Array.new
 
-      unless vimeo_media.empty?
-        vimeo_media.each do |medium|
+      unless media.empty?
+        media.each do |medium|
           tracked << medium.uri
         end
       end
 
       response.each do |medium|
-        Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id) unless tracked.include?(medium.uri)
+        unless tracked.include?(medium.uri)
+          Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id) if medium.class == Vimeo::Video
+          if medium.class == Twitter::Tweet
+            new_tweet = Medium.create_tweet_medium(medium)
+            new_tweet.update(handle_id: handle.id)
+          end
+        end
       end
     end
   end

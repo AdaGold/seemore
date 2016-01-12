@@ -25,7 +25,7 @@ RSpec.describe Handle, type: :model do
     context "when given an instance of Twitter::User" do
       it "adds an instance of Handle" do
         expect(Handle.all.count).to eq 0
-        Handle.create_handle(twitter_user_instance)
+        Handle.create_twitter_handle(twitter_user_instance.screen_name)
         expect(Handle.all.count).to eq 1
       end
     end
