@@ -1,9 +1,13 @@
 <div class="pull-left">
   <h1>Vimeo Search Results</h1>
   <% @vimeo_search_results.each do |handle| %>
-    <p>
+    <p class="results">
       <%= link_to handle.link do %>
-        <%= image_tag("#{handle.profile_image_uri}") %>
+        <% if handle.profile_image_uri %>
+          <%= image_tag("#{handle.profile_image_uri}", size: "48x48", class: "img-circle") %>
+        <% else %>
+          <%= image_tag("vimeo_default.png", size: "48x48", class: "img-circle") %>
+        <% end %>
         <%= handle.name %>
       <% end %>
         <% if handle.subscribed %>
@@ -23,9 +27,9 @@
 <div class="pull-right">
   <h1>Twitter Search Results</h1>
   <% @twitter_search_results.each do |handle| %>
-    <p>
+    <p class="results">
       <%= link_to handle.uri.to_s do %>
-        <%= image_tag("#{handle.profile_image_uri}") %>
+        <%= image_tag("#{handle.profile_image_uri}", class: "img-circle") %>
         <%= handle.screen_name %>
       <% end %>
         <%# if handle.subscribed %>

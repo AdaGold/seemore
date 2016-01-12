@@ -4,7 +4,7 @@
     <h1 id="timeline">Your FancyFeed</h1>
   </div>
 </div>
-<% if !current_user.handles.empty? %>
+<% if !current_user.handles.empty? && !current_user.media.empty? %>
   <ul class="timeline">
     <% @media.each_with_index do |medium, index| %>
       <!-- decide which side of timeline to post on -->
@@ -36,5 +36,5 @@
     <% end %>
   </ul>
 <% else %>
-  <p class="empty-feed">No subscriptions yet! Go search for some feeds to follow!</p>
+  <p class="empty-feed">Nothing to see here! Yet...</p>
 <% end %>
