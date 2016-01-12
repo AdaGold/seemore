@@ -8,21 +8,15 @@ RSpec.describe Handle, type: :model do
   describe ".validates" do
     context "when created with good parameters" do
       it "will be valid" do
-        expect(Handle.new(name: "example", uri: "link")).to be_valid
+        expect(build(:handle)).to be_valid
       end
     end
 
     context "when created with any bad parameters" do
       it "will not be valid" do
-        expect(Handle.new(name: nil, uri: "link")).to be_invalid
-        expect(Handle.new(name: "example", uri: nil)).to be_invalid
-        expect(Handle.new(name: "example", uri: "link")).to be_invalid
-      end
-      it "will not save to database" do
-        Handle.create(name: nil, uri: "link")
-        Handle.create(name: "example", uri: "link")
-        Handle.create(name: "example", uri: nil)
-        expect(Handle.all.count).to eq 0
+        expect(build(:handle, name: nil)).to be_invalid
+        expect(build(:handle, uri: nil)).to be_invalid
+        expect(build(:handle, provider: nil)).to be_invalid
       end
     end
   end
@@ -39,7 +33,7 @@ RSpec.describe Handle, type: :model do
 
   describe ".search" do
     before(:each) do
-      Handle.create(name: "houglande", uri: "link")
+      create(:handle)
     end
     it "returns array" do
       expect(Handle.search("houglande")).to be_kind_of(Array)
