@@ -13,16 +13,15 @@ class HandlesController < ApplicationController
 
   def subscribe
     # params coming from the search result page
-    handle_uri = params["handle_uri"]
     provider = params["provider"]
-
+    handle_uri = params["handle_uri"]
     # see if we have this Handle already in our db
     handle = Handle.find_by(uri: handle_uri)
 
     if handle.nil? # not in our db
       # conditional based on provider
       if provider == "twitter"
-        handle = Handle.create_twitter_handle(handle_uri)
+        handle = Handle.create_twitter_handle(params["handle_instance"])
       elsif provider == "vimeo"
         handle = Handle.create_vimeo_handle(handle_uri)
       end

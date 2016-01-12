@@ -7,7 +7,7 @@ class Handle < ActiveRecord::Base
     @results = $twitter.user_search(query)
   end
 
-  def self.create_twitter_handle(twitter_user_instance)
+  def self.create_twitter_handle(handle_instance)
     # twitter_user_instance will come from twitter gem (ex: calling $twitter.user("houglande"),
     # which returns an instance of their twitter::user class)
 
