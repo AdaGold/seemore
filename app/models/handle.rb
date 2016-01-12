@@ -7,16 +7,17 @@ class Handle < ActiveRecord::Base
     @results = $twitter.user_search(query)
   end
 
-  def self.create_twitter_handle(handle_instance)
+  def self.create_twitter_handle(handle_username)
     # twitter_user_instance will come from twitter gem (ex: calling $twitter.user("houglande"),
     # which returns an instance of their twitter::user class)
-
+    handle_instance = $twitter.user(handle_username)
     handle = Handle.new
-    handle.name = twitter_user_instance.name
-    handle.uri = twitter_user_instance.uri
-    handle.profile_image_uri = twitter_user_instance.profile_image_uri
+    handle.name = handle_instance.name
+    handle.uri = handle_instance.uri
+    handle.profile_image_uri = handle_instance.profile_image_uri
     handle.provider = "twitter"
     handle.save
+    raise
   end
 
   def self.create_vimeo_handle(uri)

@@ -21,7 +21,7 @@ class HandlesController < ApplicationController
     if handle.nil? # not in our db
       # conditional based on provider
       if provider == "twitter"
-        handle = Handle.create_twitter_handle(params["handle_instance"])
+        handle = Handle.create_twitter_handle(params["handle_username"])
       elsif provider == "vimeo"
         handle = Handle.create_vimeo_handle(handle_uri)
       end
