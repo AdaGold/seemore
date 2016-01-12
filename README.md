@@ -4,7 +4,7 @@
 
 ## Feasting on Feeds
 
-SeeMore is a student project of students in the 4th cohort of Ada Developers Academy. Team FancyFeed includes: [Ricky Hougland](https://github.com/hougland), [Jenna Nichols] (https://github.com/jennaplusplus), [Daphne Gold](https://github.com/daphnegold), and [Kelley Devlin](https://github.com/Kedevlin).
+FancyFeed is a project of students in the 4th cohort of Ada Developers Academy. The team includes: [Ricky Hougland](https://github.com/hougland), [Jenna Nichols] (https://github.com/jennaplusplus), [Daphne Gold](https://github.com/daphnegold), and [Kelley Devlin](https://github.com/Kedevlin).
 
 To view original project requirements, [click here](https://github.com/Ada-C4/seemore/blob/fancyfeed/master/README.md).
 
@@ -12,11 +12,17 @@ A **feed** is an API that a web service uses to provide users with frequently up
 
 FancyFeed is a feed aggregator service that allows users to login via Twitter or Vimeo. Once logged in, a user can search for and subscribe to Vimeo and Twitter handles. FancyFeed pulls those handles' updates together into one aggregated feed on the homepage.
 
-## Configuration
+## Set Up
+
+To get set up:
+- Fork our [repo](https://github.com/jennaplusplus/seemore/tree/fancyfeed/master), clone it to your local computer, and create your own branch to work from
 - ruby version
 - fork, clone, bundle install
 - rake db:migrate, rake db:seed (though it works best if you log in as developer and add feeds manually)
 - log in using oauth developer strategy
+
+## Contribute!
+We welcome contributions to FancyFeed! There are a number of bugs and enhancements tracked in
 
 ### Technical Requirements
 #### Authentication
