@@ -46,4 +46,8 @@ RSpec.describe Handle, type: :model do
       expect(search_results).to include(twitter_user_instance)
     end
   end
+
+  describe ".create_vimeo_handle" do
+    
+  end
 end
