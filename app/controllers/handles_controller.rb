@@ -10,15 +10,19 @@ class HandlesController < ApplicationController
   end
 
   def subscribe
+    # params coming from the search result page
     handle_uri = params["handle_uri"]
-    handle = Handle.find_by_uri(handle_uri)
-    if handle.nil?
-      handle = Handle.create_vimeo_handle(handle_uri)
-      # retrieves 5 most recent posts
-      media = handle.media.order(tweet_time: :desc).limit(5)
-      # they shouldn't be in the database anyway if the Handle is new, but just in case?
-      media.each do |medium|
-        medium.save if Medium.find_by(uri: medium.uri).empty?
+    provider = params["provider"]
+
+    # see if we have this Handle already in our db
+    handle = Handle.find_by(uri: handle_uri)
+
+    if handle.nil? # not in our db
+      # conditional based on provider
+      if provider == "twitter"
+        Handle.create_handle(twitter_user_instance)
+      elsif provider == "vimeo"
+        Handle.create_vimeo_handle(handle_uri)
       end
     end
     if current_user.handles.include?(handle)
