@@ -32,18 +32,26 @@ RSpec.describe User, type: :model do
   describe "#find_vimeo_handles" do
     it "returns an array" do
       user = User.create_with_omniauth(OmniAuth.config.mock_auth[:vimeo]["info"])
-      vimeo_handle.media << vimeo_medium
       user.handles << vimeo_handle
       expect(user.find_vimeo_handles).to be_kind_of(Array)
+      expect(user.find_vimeo_handles.length).to eq 1
     end
   end
 
   describe "#find_twitter_handles" do
     it "returns an array" do
       user = User.create_with_omniauth(OmniAuth.config.mock_auth[:vimeo]["info"])
-      twitter_handle.media << twitter_medium
       user.handles << twitter_handle
       expect(user.find_twitter_handles).to be_kind_of(Array)
+      expect(user.find_twitter_handles.length).to eq 1
+    end
+  end
+
+  describe "#merge_user_accounts" do
+    it "descreases length of User model by 1" do
+      vimeo_user = User.create_with_omniauth(OmniAuth.config.mock_auth[:vimeo]["info"])
+      twitter_user = User.create_with_omniauth(OmniAuth.config.mock_auth[:twitter]["info"])
+      expect { vimeo_user.merge_user_accounts(twitter_user) }.to change(User, :count).by(-1)
     end
   end
 end
