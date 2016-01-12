@@ -6,15 +6,21 @@
         <div class="panel-heading">Linked Accounts:</div>
           <div class="panel-body">
             <% @user.identities.each do |i| %>
-              <%= i.provider.capitalize %>
+              <p>
+                <%= i.provider.capitalize %>
+              </p>
             <% end %>
-            <% unless @user.identities.length == 2 %>
+            <% unless @user.identities.where(provider: "vimeo").first && @user.identities.where(provider: "twitter").first %>
               <h4>Link Another Account</h4>
-              <%= link_to "/auth/twitter", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
-                <%= fa_icon("twitter lg") %>
+              <% if !@user.identities.where(provider: "twitter").first %>
+                <%= link_to "/auth/twitter", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
+                  <%= fa_icon("twitter lg") %>
+                <% end %>
               <% end %>
-              <%= link_to "/auth/vimeo", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
-                <%= fa_icon("vimeo lg") %>
+              <% if !@user.identities.where(provider: "vimeo").first %>
+                <%= link_to "/auth/vimeo", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
+                  <%= fa_icon("vimeo lg") %>
+                <% end %>
               <% end %>
             <% end %>
         </div>
