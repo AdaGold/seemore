@@ -48,6 +48,11 @@ RSpec.describe Handle, type: :model do
   end
 
   describe ".create_vimeo_handle" do
-    
+    it "increases num of Handles by 1" do
+      expect(Handle.all.count).to eq 0
+      Handle.create_vimeo_handle("/users/657778")
+      # https://vimeo.com/user657778
+      expect(Handle.all.count).to eq 1
+    end
   end
 end
