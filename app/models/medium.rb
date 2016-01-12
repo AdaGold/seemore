@@ -11,7 +11,7 @@ class Medium < ActiveRecord::Base
     medium.uri = tweet_instance.uri.to_s
     medium.handle_id = (Handle.find_by twitter_id: tweet_instance.user.id).id
     medium.type = "twitter"
-    medium.tweet_time = tweet_instance.created_at
+    medium.posted_at = tweet_instance.created_at
     medium.save
   end
 
