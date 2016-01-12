@@ -33,7 +33,7 @@
           <label class="sr-only">Unsubscribe</label>
           <span class="glyphicon glyphicon-minus"></span>
         <%end %>
-      <%else %>
+      <% else %>
         <%= link_to subscribe_path(:handle_username => handle.screen_name, :handle_uri => handle.uri, :provider => "twitter"), class: "btn menu-button", method: :post do %>
           <label class="sr-only">Subscribe</label>
           <span class="glyphicon glyphicon-plus"></span>

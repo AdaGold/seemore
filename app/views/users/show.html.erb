@@ -23,6 +23,10 @@
           <div class="panel-body">
             <% @vimeo_handles.each do |h| %>
               <%= h.name %>
+              <%= link_to unsubscribe_path(:handle_uri => h.uri), class: "btn menu-button", :method => :put do %>
+                <label class="sr-only">Unsubscribe</label>
+                <span class="glyphicon glyphicon-minus"></span>
+              <% end %>
               <br>
             <% end %>
           </div>
@@ -32,6 +36,10 @@
           <div class="panel-body">
             <% @twitter_handles.each do |t| %>
               <%= t.name %>
+              <%= link_to unsubscribe_path(:handle_uri => t.uri), class: "btn menu-button", :method => :put do %>
+                <label class="sr-only">Unsubscribe</label>
+                <span class="glyphicon glyphicon-minus"></span>
+              <% end %>
               <br>
             <% end %>
           </div>
