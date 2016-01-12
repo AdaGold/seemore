@@ -14,43 +14,18 @@ FancyFeed is a feed aggregator service that allows users to login via Twitter or
 
 ## Set Up
 
-To get set up:
-- Fork our [repo](https://github.com/jennaplusplus/seemore/tree/fancyfeed/master), clone it to your local computer, and create your own branch to work from
-- ruby version
-- fork, clone, bundle install
-- rake db:migrate, rake db:seed (though it works best if you log in as developer and add feeds manually)
-- log in using oauth developer strategy
+Get FancyFeed set up on your local computer:
+1. Runs on ruby version 2.2.3
+2. Fork our [repo](https://github.com/jennaplusplus/seemore/tree/fancyfeed/master), clone it to your local computer, and create your own branch to work from
+3. Run ```bundle install```. If you get an error, try ```gem install bundle```, then ```bundle install``` again.
+4. Run ```rake db:migrate``` to set up the database, then ```rake db:seed``` to include seed data.
+5. Run ```rails s``` then visit your local server to see the website.
+6. We highly recommend you log in using OmniAuth's Developer Strategy, which is already configured. Instead of clicking the Twitter or Vimeo icons to log in, visit ```http://localhost:3000/auth/developer/```. This gives you a sample login from which you can play around. NOTE: this is **not** secure in any way and should never be used in deployment!
+7. You can run the test suite by typing ```rspec```.
 
 ## Contribute!
-We welcome contributions to FancyFeed! There are a number of bugs and enhancements tracked in
+We welcome contributions to FancyFeed! There are a number of bugs and enhancements tracked as Github Issues.
 
-### Technical Requirements
-#### Authentication
-  - Allows Users to sign in and out using [OmniAuth's Developer Strategy](http://rubydoc.info/github/intridea/omniauth/master/OmniAuth/Strategies/Developer) in development only. This should not be enabled for Production (a.k.a. Heroku deployment)
-  - Allows Users to sign-up and login with at least two social media accounts (Instagram, Twitter, Vimeo, Github)
+Please comment on the issue you want to work on, then create a new branch for that feature or bug-fix. Please run ```rspec``` as you work, so we can ensure tests continue to pass, and test coverage remains above 95%. 
 
-#### Functionality
-  - A user can view all subscribed feeds on one page in chronological order
-  - Save each social media post to the local database, duplicates should not be allowed
-
-#### Testing
-  - 95% Test Coverage
-
-#### Look & Feel
-  - Visually appealing and polished
-
-### Baseline
-- Each team shall submit a baseline Pull Request with their Rails application created, ruby version, ruby gemset and gemfile updated with default gems
-- This PR shall be merged with the baseline setup prior to any other code being pushed to the branch/fork
-
-### Final Submission
-- Deployed to Heroku and link included in the Pull Request and README
-- No major bugs
-- Minor bugs noted as Github issues
-
-### Added Fun!
-  - Automatically pulls in Twitter timeline feed for the authenticated user
-  - Automatically pulls in Instagram timeline feed for the authenticated user
-  - Use any additional APIs not in your chosen two for authentication or feed aggregation
-  - Use **cron** to periodically update feeds without duplication
-  - Allow Users to share favorite stories back to social media services
+When you're done, submit a pull request for us to review.
