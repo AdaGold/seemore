@@ -10,8 +10,9 @@ module Vimeo
       @description = user_hash["description"]
     end
 
-    def self.get_user_videos(user_uri, page=1)
-      query = "fields=name,description,embed,uri"
+    def self.get_user_videos(user_uri, page=1, per_page=5)
+      #
+      query = "fields=name,description,embed,uri&page=#{page}&per_page=#{per_page}"
 
       response = HTTParty.get("#{BASE_URI}/#{user_uri}/videos?#{query}", headers: HEADERS)
       parsed_response = JSON.parse(response)
