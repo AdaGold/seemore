@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
 
   def correct_user
     user = User.find(params[:id])
-    if user == current_user
-    else
+    unless user == current_user
       flash[:error] = "You do not have permission to access that page."
       redirect_to(root_path)
     end
