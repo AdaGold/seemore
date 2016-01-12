@@ -22,10 +22,9 @@ class HandlesController < ApplicationController
     if handle.nil? # not in our db
       # conditional based on provider
       if provider == "twitter"
-        handle = Handle.create_handle(twitter_user_instance)
+        handle = Handle.create_twitter_handle(handle_uri)
       elsif provider == "vimeo"
         handle = Handle.create_vimeo_handle(handle_uri)
-
       end
     end
     if current_user.handles.include?(handle)
@@ -38,7 +37,7 @@ class HandlesController < ApplicationController
     end
   end
 
-  # need to update this 
+  # need to update this
   def unsubscribe
     handle_uri = params["handle_uri"]
     handle = Handle.find_by_uri(handle_uri)
