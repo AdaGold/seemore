@@ -1,6 +1,6 @@
 # FancyFeed
 
-![SeeMore](http://www.theirishduck.info/wp-content/uploads/2013/06/plant.png)
+![FancyFeed](http://cdn0.rubylane.com/shops/1089582/MCGP1514.1L.jpg)
 
 ## Feasting on Feeds
 
