@@ -5,5 +5,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @vimeo_handles = @user.find_vimeo_handles
+    @twitter_handles = @user.find_twitter_handles
   end
 end
