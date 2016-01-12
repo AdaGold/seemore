@@ -1,6 +1,6 @@
 module Vimeo
   class Video < Base
-    attr_reader :uri, :name, :link, :embed
+    attr_reader :uri, :embed, :posted_at
     attr_accessor :subscribed
 
     def initialize(video_hash)
@@ -9,8 +9,7 @@ module Vimeo
       @embed = video_hash["embed"]["html"].delete('\"')
     end
 
-    def self.get_user_videos(video_uri, page=1, per_page=5)
-      # now that we have create time, pull the first 5
+    def self.get_user_videos(user_uri, page=1, per_page=5)
       query = "fields=created_time,embed,uri&page=#{page}&per_page=#{per_page}"
 
       response = HTTParty.get("#{BASE_URI}/#{user_uri}/videos?#{query}", headers: HEADERS)
@@ -20,7 +19,7 @@ module Vimeo
       parsed_response["data"].each do |hash|
         video_object_array << self.new(hash)
       end
-
+      binding.pry
       return video_object_array
 
       # a.gsub!(/\"/, '\'')
