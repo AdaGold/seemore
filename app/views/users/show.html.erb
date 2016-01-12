@@ -10,10 +10,10 @@
             <% end %>
             <% unless @user.identities.length == 2 %>
               <h4>Link Another Account</h4>
-              <%= link_to "/auth/twitter", class: "btn btn-default" do %>
+              <%= link_to "/auth/twitter", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
                 <%= fa_icon("twitter lg") %>
               <% end %>
-              <%= link_to "/auth/vimeo", class: "btn btn-default" do %>
+              <%= link_to "/auth/vimeo", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
                 <%= fa_icon("vimeo lg") %>
               <% end %>
             <% end %>
