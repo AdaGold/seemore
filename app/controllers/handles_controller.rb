@@ -21,7 +21,14 @@ class HandlesController < ApplicationController
     if handle.nil? # not in our db
       # conditional based on provider
       if provider == "twitter"
-        handle = Handle.create_twitter_handle(params["handle_username"])
+        handle_username = params["handle_username"]
+        handle = Handle.create_twitter_handle(handle_username)
+        tweets = $twitter.user_timeline(handle_username).take(5)
+        tweets.each do |tweet|
+          medium = Medium.create_tweet_medium(tweet)
+          medium.handle_id = handle.id
+          medium.save
+        end
       elsif provider == "vimeo"
         handle = Handle.create_vimeo_handle(handle_uri)
         videos = Vimeo::Video.get_user_videos(handle.uri)

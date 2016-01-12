@@ -17,7 +17,7 @@ class Handle < ActiveRecord::Base
     handle.profile_image_uri = handle_instance.profile_image_uri
     handle.provider = "twitter"
     handle.save
-    raise
+    return handle
   end
 
   def self.create_vimeo_handle(uri)
