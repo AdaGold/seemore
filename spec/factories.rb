@@ -1,8 +1,14 @@
 FactoryGirl.define do
-  factory :handle do
+  factory :twitter_handle, class: Handle do
     name "houglande"
     uri "https://twitter.com/sferik"
     provider "twitter"
+  end
+
+  factory :vimeo_handle, class: Handle do
+    name "Johnny Kelly"
+    uri "/users/253450"
+    provider "vimeo"
   end
 
   factory :user1, class: User do
@@ -14,7 +20,6 @@ FactoryGirl.define do
   end
 
   factory :medium do
-    handle
     uri "link"
     embed "link"
     posted_at Time.now
