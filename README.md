@@ -15,6 +15,7 @@ FancyFeed is a feed aggregator service that allows users to login via Twitter or
 ## Set Up
 
 Get FancyFeed set up on your local computer:
+
 1. Runs on ruby version 2.2.3
 2. Fork our [repo](https://github.com/jennaplusplus/seemore/tree/fancyfeed/master), clone it to your local computer, and create your own branch to work from
 3. Run ```bundle install```. If you get an error, try ```gem install bundle```, then ```bundle install``` again.
@@ -26,6 +27,6 @@ Get FancyFeed set up on your local computer:
 ## Contribute!
 We welcome contributions to FancyFeed! There are a number of bugs and enhancements tracked as Github Issues.
 
-Please comment on the issue you want to work on, then create a new branch for that feature or bug-fix. Please run ```rspec``` as you work, so we can ensure tests continue to pass, and test coverage remains above 95%. 
+Please comment on the issue you want to work on, then create a new branch for that feature or bug-fix. Please run ```rspec``` as you work, so we can ensure tests continue to pass, and test coverage remains above 95%.
 
 When you're done, submit a pull request for us to review.
