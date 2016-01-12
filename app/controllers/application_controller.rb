@@ -35,22 +35,28 @@ class ApplicationController < ActionController::Base
   end
 
   def update_feed
+    query_string = ""
+    response = []
+
     current_user.handles.each do |handle|
-      response = []
+      query_string += "from:#{handle.name} OR " if handle.provider == "twitter"
       response += Vimeo::Video.get_user_videos(handle.uri) if handle.provider == "vimeo"
-      response += $twitter.user_timeline(handle.name).take(5) if handle.provider == "twitter"
-      media = Medium.all
-      tracked = Array.new
-      untracked = Array.new
+    end
 
-      unless media.empty?
-        media.each do |medium|
-          tracked << medium.uri
-        end
+    response += $twitter.search(query_string, result_type: "recent").take(2)
+
+    media = Medium.all
+    tracked = Array.new
+
+    unless media.empty?
+      media.each do |medium|
+        tracked << medium.uri
       end
+    end
 
+    current_user.handles.each do |handle|
       response.each do |medium|
-        unless tracked.include?(medium.uri)
+        unless tracked.include?(medium.uri.to_s)
           Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id) if medium.class == Vimeo::Video
           if medium.class == Twitter::Tweet
             new_tweet = Medium.create_tweet_medium(medium)
