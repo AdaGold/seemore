@@ -1,7 +1,7 @@
 class Handle < ActiveRecord::Base
   has_many :media
   has_and_belongs_to_many :users
-  validates :name, :uri, presence: true
+  validates :name, :uri, :providor, presence: true
 
   def self.search(query)
     @results = $twitter.user_search(query)
