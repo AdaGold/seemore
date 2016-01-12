@@ -14,7 +14,7 @@ module Vimeo
     def self.find_by_uri(handle_uri)
       response = HTTParty.get("#{BASE_URI}#{handle_uri}", headers: HEADERS)
       parsed_response = JSON.parse(response)
-      
+
       new_user = self.new(parsed_response)
       new_user.profile_image_uri = parsed_response["pictures"]["sizes"].last["link"] unless parsed_response["pictures"].nil?
 
@@ -22,14 +22,16 @@ module Vimeo
     end
 
     def self.find_by_name(user_name, page=1)
-      query = { query: user_name, page: page, fields: "uri,name,link" }
+      query = { query: user_name, page: page, fields: "uri,name,link,pictures" }
 
       response = HTTParty.get("#{BASE_URI}/users", query: query, headers: HEADERS)
       parsed_response = JSON.parse(response)
 
       user_object_array = Array.new
       parsed_response["data"].each do |hash|
-        user_object_array << self.new(hash)
+        new_user = self.new(hash)
+        new_user.profile_image_uri = hash["pictures"]["sizes"].last["link"] unless hash["pictures"].nil?
+        user_object_array << new_user
       end
 
       return user_object_array
