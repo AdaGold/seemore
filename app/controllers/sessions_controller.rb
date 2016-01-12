@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, only: [:create] 
+  skip_before_filter :verify_authenticity_token, only: [:create]
+  after_action :update_feed, only: [:create]
 
   def create
     auth = request.env['omniauth.auth']
@@ -15,11 +16,11 @@ class SessionsController < ApplicationController
     # CURRENTLY, all this is linking the identity to the user, not linking any feeds or follower handles
     if signed_in?
       if @identity.user == current_user
-        # this shouldn't happen unless we add a button to a logged in user allowing them to link the other account (link is not linking a feed, it's creating another identity for the user)
+        # Occurs when a user is logged in, and tries to link via a provider they've already linked before
         redirect_to root_path, notice: "Already linked that account!"
       else
-        # Linking an identity with the signed in user.  Identity hasn't previously been linked with user.
-        # need to add code to stop before changing the identity's user; we want to give the user the option to merge accounts so the two identities point to the same user (one user gets deleted), but we want to make sure the user is ok and understands this first. See Daphne's drawing.
+        # Linking an identity with the signed in user. Identity hasn't previously been linked with user.
+        # This also merges the handles each user account follows
         current_user.merge_user_accounts(@identity.user) unless @identity.user.nil?
 
         @identity.user = current_user

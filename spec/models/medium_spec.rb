@@ -12,7 +12,6 @@ RSpec.describe Medium, type: :model do
       it "will not be valid" do
         expect(build(:medium, handle_id: nil)).to be_invalid
         expect(build(:medium, uri: nil)).to be_invalid
-        expect(build(:medium, embed: nil)).to be_invalid
         expect(build(:medium, posted_at: nil)).to be_invalid
       end
     end
