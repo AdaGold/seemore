@@ -22,7 +22,8 @@ RSpec.describe Medium, type: :model do
     context "when given an instance of Twitter::Tweet" do
       it "adds an instance of Medium" do
         expect(Medium.all.count).to eq 0
-        create(:medium)
+        create(:handle)
+        Medium.create_medium($twitter.status(27558893223))
         expect(Medium.all.count).to eq 1
       end
     end

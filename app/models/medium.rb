@@ -7,7 +7,7 @@ class Medium < ActiveRecord::Base
     # which returns an instance of their twitter::tweet class)
 
     medium = Medium.new
-    medium.handle_id = (Handle.find_by twitter_id: tweet_instance.user.id).id
+    medium.handle_id = (Handle.find_by uri: tweet_instance.user.uri.to_s).id
     medium.uri = tweet_instance.uri.to_s
     medium.embed = tweet_instance.uri.to_s
     medium.posted_at = tweet_instance.created_at

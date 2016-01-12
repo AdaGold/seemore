@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :handle do
     name "houglande"
-    uri "link"
+    uri "https://twitter.com/sferik"
     provider "twitter"
   end
 
