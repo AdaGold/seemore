@@ -21,12 +21,12 @@ Get FancyFeed set up on your local computer:
 3. Run ```bundle install```. If you get an error, try ```gem install bundle```, then ```bundle install``` again.
 4. Run ```rake db:migrate``` to set up the database, then ```rake db:seed``` to include seed data.
 5. Run ```rails s``` then visit your local server to see the website.
-6. We highly recommend you log in using OmniAuth's Developer Strategy, which is already configured. Instead of clicking the Twitter or Vimeo icons to log in, visit ```http://localhost:3000/auth/developer/```. This gives you a sample login from which you can play around. NOTE: this is **not** secure in any way and should never be used in deployment!
+6. We highly recommend you log in using OmniAuth's Developer Strategy, which is already configured. Instead of clicking the Twitter or Vimeo icons to log in, visit ```http://localhost:3000/auth/developer/```. This gives you a sample login from which you can play around. **NOTE:** this is **not** secure in any way and should never be used in deployment!
 7. You can run the test suite by typing ```rspec```.
 
 ## Contribute!
-We welcome contributions to FancyFeed! There are a number of bugs and enhancements tracked as Github Issues.
+We welcome contributions to FancyFeed! Bugs and enhancements are tracked as Github Issues.
 
-Please comment on the issue you want to work on, then create a new branch for that feature or bug-fix. Please run ```rspec``` as you work, so we can ensure tests continue to pass, and test coverage remains above 95%.
+ Comment on the issue you want to work on, then create a new branch for that feature or bug-fix. Please run ```rspec``` as you work, so we can ensure tests continue to pass, and test coverage remains above 95%.
 
 When you're done, submit a pull request for us to review.
