@@ -2,6 +2,12 @@
 
 ![SeeMore](http://www.theirishduck.info/wp-content/uploads/2013/06/plant.png)
 
+## About
+
+SeeMore is a student project of students in the 4th cohort of Ada Developers Academy. Team FancyFeed includes: [Ricky Hougland](https://github.com/hougland), [Jenna Nichols] (https://github.com/jennaplusplus), [Daphne Gold](https://github.com/daphnegold), and [Kelley Devlin](https://github.com/Kedevlin).
+
+To view original project requirements, [click here](https://github.com/Ada-C4/seemore/blob/fancyfeed/master/README.md).
+
 A **feed** is an API that a web service uses to provide users with frequently updated content. A *feed aggregator*  is an application that acts as a central location for reviewing the content of feeds. It **injests** feeds and stores their content in its own datastore after transforming it into a standard format.
 
 You and your team will build a feed aggregator service that allows users to login via Twitter, Github, Instagram and Vimeo. It will allow users to subscribe to updates from these feeds. Users can then view these updates all in one location as an aggregated feed.
