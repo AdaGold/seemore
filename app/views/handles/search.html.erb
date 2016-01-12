@@ -1,42 +1,44 @@
 <div class="pull-left">
   <h1>Vimeo Search Results</h1>
   <% @vimeo_search_results.each do |handle| %>
-    <p>
+    <p class="results">
+      <% if handle.profile_image_uri %>
+        <%= image_tag("#{handle.profile_image_uri}", size: "48x48", class: "img-circle") %>
+      <% else %>
+        <%= image_tag("vimeo_default.png", size: "48x48", class: "img-circle") %>
+      <% end %>
       <%= link_to handle.name, handle.link %>
-        <% if handle.subscribed %>
-          <%= link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
-            <label class="sr-only">Unsubscribe</label>
-            <span class="glyphicon glyphicon-minus"></span>
-          <% end %>
-        <% else %>
-          <%= link_to subscribe_path(:handle_uri => handle.uri, :provider => "vimeo"), class: "btn menu-button", method: :post do %>
-            <label class="sr-only">Subscribe</label>
-            <span class="glyphicon glyphicon-plus"></span>
-          <% end %>
+      <% if handle.subscribed %>
+        <%= link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
+          <label class="sr-only">Unsubscribe</label>
+          <span class="glyphicon glyphicon-minus"></span>
         <% end %>
+      <% else %>
+        <%= link_to subscribe_path(:handle_uri => handle.uri, :provider => "vimeo"), class: "btn menu-button", method: :post do %>
+          <label class="sr-only">Subscribe</label>
+          <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
+      <% end %>
     </p>
   <% end %>
 </div>
 <div class="pull-right">
   <h1>Twitter Search Results</h1>
   <% @twitter_search_results.each do |handle| %>
-    <p>
+    <p class="results">
+      <%= image_tag("#{handle.profile_image_uri}", class: "img-circle") %>
       <%= link_to handle.screen_name, handle.uri.to_s %>
+      <% if current_user.handles.include?(handle) %>
+        <% link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
+          <label class="sr-only">Unsubscribe</label>
+          <span class="glyphicon glyphicon-minus"></span>
+        <%end %>
+      <%else %>
         <%= link_to subscribe_path(:handle_username => handle.user_name, :handle_uri => handle.uri, :provider => "twitter"), class: "btn menu-button", method: :post do %>
           <label class="sr-only">Subscribe</label>
           <span class="glyphicon glyphicon-plus"></span>
         <% end %>
-        <%# if handle.subscribed %>
-          <%# link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
-            <!-- <label class="sr-only">Unsubscribe</label>
-            <span class="glyphicon glyphicon-minus"></span> -->
-          <%# end %>
-        <%# else %>
-          <%# link_to subscribe_path(:handle_uri => handle.uri, :type => "vimeo"), class: "btn menu-button", method: :post do %>
-            <!-- <label class="sr-only">Subscribe</label>
-            <span class="glyphicon glyphicon-plus"></span> -->
-          <%# end %>
-        <%# end %>
+      <% end %>
     </p>
   <% end %>
 </div>
