@@ -1,6 +1,6 @@
 class Medium < ActiveRecord::Base
   belongs_to :handle
-  validates :uri, :handle_uri, :posted_at, presence: true
+  validates :uri, :handle_id, :posted_at, presence: true
 
   def self.create_medium(tweet_instance)
     # tweet_instance will come from twitter gem (ex: calling $twitter.status(27558893223),
