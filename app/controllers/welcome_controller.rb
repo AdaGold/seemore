@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-    @media = current_user.media.order(posted_at: :desc) if current_user
+    if current_user
+      media = current_user.media.order(posted_at: :desc)
+      @media = media[0..15]
+    end
   end
 end

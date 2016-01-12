@@ -3,10 +3,6 @@ require 'vimeo'
 class HandlesController < ApplicationController
   before_action :require_login
 
-  def show
-    @handle = Handle.find(params[:id])
-  end
-
   def add
 
   end
