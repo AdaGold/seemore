@@ -1,17 +1,16 @@
 module Vimeo
   class Video < Base
-    attr_reader :uri, :name, :link, :embed
+    attr_reader :uri, :embed, :posted_at
     attr_accessor :subscribed
 
-    def initialize(user_hash)
-      @uri = user_hash["uri"]
-      @name = user_hash["name"]
-      @embed = user_hash["embed"]["html"].delete('\"')
-      @description = user_hash["description"]
+    def initialize(video_hash)
+      @uri = video_hash["uri"]
+      @posted_at = video_hash["created_time"]
+      @embed = video_hash["embed"]["html"].delete('\"')
     end
 
-    def self.get_user_videos(user_uri, page=1)
-      query = "fields=name,description,embed,uri"
+    def self.get_user_videos(user_uri, page=1, per_page=5)
+      query = "fields=created_time,embed,uri&page=#{page}&per_page=#{per_page}"
 
       response = HTTParty.get("#{BASE_URI}/#{user_uri}/videos?#{query}", headers: HEADERS)
       parsed_response = JSON.parse(response)
@@ -20,7 +19,6 @@ module Vimeo
       parsed_response["data"].each do |hash|
         video_object_array << self.new(hash)
       end
-
       return video_object_array
 
       # a.gsub!(/\"/, '\'')
