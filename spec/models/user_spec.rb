@@ -7,9 +7,9 @@ RSpec.describe User, type: :model do
 
   let(:vimeo_handle) { build(:vimeo_handle) }
 
-  let(:twitter_medium) { build(:medium) }
+  let(:twitter_medium) { build(:twitter_medium) }
 
-  let(:vimeo_medium) { build(:medium) }
+  let(:vimeo_medium) { build(:vimeo_medium) }
 
   describe "validations" do
     it "is valid" do
