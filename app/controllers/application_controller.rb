@@ -31,4 +31,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def update_feed
+    # current_user.handles.each do |handle|
+    #   response = Vimeo::Videos.get_user_videos(user_uri)
+    #     unsaved = response.find_all { |media| media.uri }
+    end
+  end
 end

@@ -38,7 +38,7 @@ class HandlesController < ApplicationController
     end
   end
 
-  # need to update this 
+  # need to update this
   def unsubscribe
     handle_uri = params["handle_uri"]
     handle = Handle.find_by_uri(handle_uri)

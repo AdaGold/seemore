@@ -14,7 +14,7 @@ module Vimeo
     def self.find_by_uri(handle_uri)
       response = HTTParty.get("#{BASE_URI}#{handle_uri}", headers: HEADERS)
       parsed_response = JSON.parse(response)
-      
+
       new_user = self.new(parsed_response)
       new_user.profile_image_uri = parsed_response["pictures"]["sizes"].last["link"] unless parsed_response["pictures"].nil?
 
