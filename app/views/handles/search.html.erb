@@ -22,6 +22,10 @@
   <% @twitter_search_results.each do |handle| %>
     <p>
       <%= link_to handle.screen_name, handle.uri.to_s %>
+        <%= link_to subscribe_path(:handle_uri => handle.uri, :provider => "twitter"), class: "btn menu-button", method: :post do %>
+          <label class="sr-only">Subscribe</label>
+          <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
         <%# if handle.subscribed %>
           <%# link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
             <!-- <label class="sr-only">Unsubscribe</label>
