@@ -2,7 +2,10 @@
   <h1>Vimeo Search Results</h1>
   <% @vimeo_search_results.each do |handle| %>
     <p>
-      <%= link_to handle.name, handle.link %>
+      <%= link_to handle.link do %>
+        <%= image_tag("#{handle.profile_image_uri}") %>
+        <%= handle.name %>
+      <% end %>
         <% if handle.subscribed %>
           <%= link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
             <label class="sr-only">Unsubscribe</label>
@@ -21,7 +24,10 @@
   <h1>Twitter Search Results</h1>
   <% @twitter_search_results.each do |handle| %>
     <p>
-      <%= link_to handle.screen_name, handle.uri.to_s %>
+      <%= link_to handle.uri.to_s do %>
+        <%= image_tag("#{handle.profile_image_uri}") %>
+        <%= handle.screen_name %>
+      <% end %>
         <%# if handle.subscribed %>
           <%# link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
             <!-- <label class="sr-only">Unsubscribe</label>
