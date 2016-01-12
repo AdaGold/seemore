@@ -14,9 +14,9 @@
     <% end %>
 
       <!-- decide which icon to display (pencil or video) -->
-      <% if medium.type == "Video" %>
+      <% if medium.handle.provider == "Video" %>
       <div class="timeline-badge muted"><i class="glyphicon glyphicon-facetime-video"></i></div>
-      <% elsif medium.type == "Tweet" %>
+      <% elsif medium.handle.provider == "Tweet" %>
       <div class="timeline-badge info"><i class="glyphicon glyphicon-pencil"></i></div>
       <% end %>
 
@@ -26,7 +26,7 @@
           <p><%= link_to medium.handle.name, "http://#{medium.handle.uri}" %></p>
         </div>
         <div class="timeline-heading">
-          <h4 class="timeline-title"><%= medium.text %></h4>
+          <!-- <h4 class="timeline-title"><%# medium.text %></h4> -->
           <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Posted <%= time_ago_in_words(medium.posted_at) %> ago</small></p>
         </div>
 

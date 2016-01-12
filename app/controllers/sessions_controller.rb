@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
-  before_action :update_feed
+  after_action :update_feed, only: [:create]
 
   def create
     auth = request.env['omniauth.auth']

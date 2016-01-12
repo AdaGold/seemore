@@ -1,3 +1,5 @@
+require 'vimeo'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -33,9 +35,21 @@ class ApplicationController < ActionController::Base
   end
 
   def update_feed
-    # current_user.handles.each do |handle|
-    #   response = Vimeo::Videos.get_user_videos(user_uri)
-    #     unsaved = response.find_all { |media| media.uri }
+    current_user.handles.each do |handle|
+      response = Vimeo::Video.get_user_videos(handle.uri) if handle.provider == "vimeo"
+      vimeo_media = Medium.all
+      tracked = Array.new
+      untracked = Array.new
+
+      unless vimeo_media.empty?
+        vimeo_media.each do |medium|
+          tracked << medium.uri
+        end
+      end
+
+      response.each do |medium|
+        Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id) unless tracked.include?(medium.uri)
+      end
     end
   end
 end
