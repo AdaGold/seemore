@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
         @identity.user = @user
         @identity.save
         self.current_user = @identity.user
-        redirect_to root_path, notice: "Completely new!"
+        redirect_to root_path, notice: "Thanks for signing up!"
       end
     end
   end

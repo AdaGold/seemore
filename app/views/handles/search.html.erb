@@ -28,8 +28,8 @@
     <p class="results">
       <%= image_tag("#{handle.profile_image_uri}", class: "img-circle") %>
       <%= link_to handle.screen_name, handle.uri.to_s %>
-      <% if current_user.handles.include?(handle) %>
-        <% link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
+      <% if current_user.handles.pluck(:name).include?(handle.screen_name) %>
+        <%= link_to unsubscribe_path(:handle_uri => handle.uri), class: "btn menu-button", :method => :put do %>
           <label class="sr-only">Unsubscribe</label>
           <span class="glyphicon glyphicon-minus"></span>
         <%end %>
