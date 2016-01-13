@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe HandlesController, type: :controller do
   let(:user1) { create(:user1) }
 
+  before(:each) do
+   session[:user_id] = user1.id
+  end
+
   describe "#subscribe" do
     let(:twitter_params) do
       { "provider" => "twitter", "handle_uri" => "https://twitter.com/sferik", "handle_username" => "houglande" }
@@ -15,7 +19,6 @@ RSpec.describe HandlesController, type: :controller do
     context "when handle does not yet exist in our database" do
       context "when provider is twitter" do
         it "creates a new handle with twitter as provider and 5 associated media" do
-          session[:user_id] = user1.id
           post :subscribe, twitter_params
           expect(Handle.all.last.provider).to eq "twitter"
           expect(Medium.all.length).to eq 5
@@ -26,7 +29,6 @@ RSpec.describe HandlesController, type: :controller do
 
     context "when provider is vimeo" do
       it "creates a new handle with vimeo as provider and 5 associated media" do
-        session[:user_id] = user1.id
         post :subscribe, vimeo_params
         expect(Handle.all.last.provider).to eq "vimeo"
         expect(Medium.all.length).to eq 5
@@ -36,12 +38,35 @@ RSpec.describe HandlesController, type: :controller do
 
     context "when user has already subscribed to handle" do
       it "redirects to last page" do
-        session[:user_id] = user1.id
         user1.handles << create(:twitter_handle)
         request.env["HTTP_REFERER"] = "where_i_came_from"
         post :subscribe, twitter_params
         expect(subject).to redirect_to "where_i_came_from"
       end
+    end
+  end
+
+  describe "#unsubscribe" do
+    before(:each) do
+      user1.handles << create(:twitter_handle)
+      user1.handles << create(:vimeo_handle)
+    end
+
+    it "removes handle from user's handles array" do
+      put :unsubscribe, { handle_uri: "https://twitter.com/sferik" }
+      expect(User.all.last.handles.length).to eq 1
+    end
+
+    context "when there are no longer any users subscribing to the handle" do
+      it "removes handle from our application's database" do
+        put :unsubscribe, { handle_uri: "https://twitter.com/sferik" }
+        expect(Handle.find_by_uri("https://twitter.com/sferik")).to eq nil
+      end
+    end
+
+    it "redirects to settings page" do
+      put :unsubscribe, { handle_uri: "https://twitter.com/sferik" }
+      expect(subject).to redirect_to user_path(user1.id)
     end
   end
 end
