@@ -19,7 +19,7 @@ Get FancyFeed set up on your local computer:
 1. Runs on ruby version 2.2.3
 2. Fork our [repo](https://github.com/jennaplusplus/seemore/tree/fancyfeed/master), clone it to your local computer, and create your own branch to work from
 3. Run ```bundle install```. If you get an error, try ```gem install bundle```, then ```bundle install``` again.
-4. Run ```rake db:migrate``` to set up the database, then ```rake db:seed``` to include seed data.
+4. Run ```rake db:migrate``` to set up the database.
 5. Run ```rails s``` then visit your local server to see the website.
 6. We highly recommend you log in using OmniAuth's Developer Strategy, which is already configured. Instead of clicking the Twitter or Vimeo icons to log in, visit ```http://localhost:3000/auth/developer/```. This gives you a sample login from which you can play around. **NOTE:** this is **not** secure in any way and should never be used in deployment!
 7. You can run the test suite by typing ```rspec```.
