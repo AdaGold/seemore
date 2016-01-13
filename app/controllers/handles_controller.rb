@@ -3,10 +3,6 @@ require 'vimeo'
 class HandlesController < ApplicationController
   before_action :require_login
 
-  def add
-
-  end
-
   def subscribe
     # params coming from the search result page
     provider = params["provider"]
@@ -54,10 +50,6 @@ class HandlesController < ApplicationController
     end
     flash[:success] = "Unsubscribed!"
     redirect_to user_path(current_user)
-  end
-
-  def remove
-
   end
 
   def search
