@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def deauthorize
+    # add logic such that user must have at least one identity associated!
     user = User.find(params[:id])
     identities = user.identities
     identities.each do |identity|
