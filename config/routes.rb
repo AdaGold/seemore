@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  get '/:filter' => 'welcome#filter', as: :filter
-
   # users route
   get '/users/:id' => 'users#show', as: :user # gets user's account page
 
@@ -19,6 +17,9 @@ Rails.application.routes.draw do
 
   # other
   put '/users/:id/:provider' => 'users#deauthorize', as: :deauthorize
+
+  get '/:filter' => 'welcome#filter', as: :filter
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

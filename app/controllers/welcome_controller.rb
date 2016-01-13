@@ -7,6 +7,16 @@ class WelcomeController < ApplicationController
   end
 
   def filter
+    filter = params[:filter]
 
+    if filter == "twitter"
+      # current_user.media
+      # @media = current_user.
+      render :index
+    elsif filter == "vimeo"
+      render :index
+    else
+      redirect_to root_path
+    end
   end
 end
