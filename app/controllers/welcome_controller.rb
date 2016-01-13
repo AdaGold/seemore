@@ -9,13 +9,17 @@ class WelcomeController < ApplicationController
   def filter
     filter = params[:filter]
 
-    @media = []
+    media = []
 
     current_user.media.each do |medium|
       if medium.handle.provider == filter
-        @media << medium
+        media << medium
       end
     end
+
+    media = media.order(posted_at: :desc)
+
+    @media = media[0...15]
 
     render :index
   end
