@@ -5,23 +5,19 @@ Rails.application.routes.draw do
   get '/users/:id' => 'users#show', as: :user # gets user's account page
 
   # handles routes
-  resources :handles, :only => [:index, :show] # show a twitter handle's feed
-  # get 'search/:query' => 'handles#search', :as => 'search' # search all posts
-  get '/search' => 'handles#search', :as => 'search' # search vimeo
-
-  # media routes
-  post 'handles/:id' => 'handles#add' # add twitter account to user's feed
-  # KD note: may not need both this route and the above route:
+  resources :handles, :only => :index
+  get '/search' => 'handles#search', :as => 'search'
   post '/subscribe' => 'handles#subscribe', :as => 'subscribe' # creates handle object if it doesn't exits, associates handle with user
   put '/unsubscribe' => 'handles#unsubscribe', :as => 'unsubscribe' # removes handle association with user; deletes handle from database if no more associated users
 
-  delete 'users/:user_id/handles/:id' => 'handles#remove' # delete twitter account from user's feed
-
   # sessions routes
-  post "/auth/developer/callback", to: "sessions#create"
-
+  post "/auth/developer/callback", to: "sessions#create" # developer strategy log in
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/logout", to: 'sessions#destroy', as: :logout
+
+  # other
+  get 'users/:id/:provider' => 'users#confirm', as: :confirm
+  put '/users/:id/:provider' => 'users#deauthorize', as: :deauthorize
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

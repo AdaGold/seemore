@@ -7,4 +7,12 @@ class UsersController < ApplicationController
     @vimeo_handles = @user.find_vimeo_handles
     @twitter_handles = @user.find_twitter_handles
   end
+
+  def confirm
+
+  end
+
+  def deauthorize
+
+  end
 end
