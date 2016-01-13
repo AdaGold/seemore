@@ -59,7 +59,9 @@ class HandlesController < ApplicationController
     @vimeo_search_results.each do |sr|
       handle = Handle.find_by_uri(sr.uri)
       if current_user.handles.include?(handle)
+
         sr.subscribed = true
+
       end
     end
     @twitter_search_results = $twitter.user_search(name)

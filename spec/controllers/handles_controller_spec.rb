@@ -69,4 +69,28 @@ RSpec.describe HandlesController, type: :controller do
       expect(subject).to redirect_to user_path(user1.id)
     end
   end
+
+  describe "#search" do
+    it "returns vimeo user objects whose name matches the name query" do
+      get :search, { query: "Johnny Kelly" }
+      expect(assigns(:vimeo_search_results).length).to eq 9
+      expect(assigns(:vimeo_search_results)[0]).to be_an_instance_of Vimeo::User
+    end
+
+    context "if the current user is subscribed to corresponding vimeo handle" do
+      it "assigns the vimeo object's subscribe attritube to true" do
+        vimeo_handle = create(:vimeo_handle)
+        user1.handles << vimeo_handle
+        get :search, { query: "Johnny Kelly" }
+
+        expect(assigns(:vimeo_search_results)[0].subscribed).to eq true
+      end
+    end
+
+    it "returns twitter user objects whose name matches the name query " do
+      get :search, { query: "Hello ClubW" }
+      expect(assigns(:twitter_search_results).length).to eq 1
+      expect(assigns(:twitter_search_results)[0]).to be_an_instance_of Twitter::User
+    end
+  end
 end
