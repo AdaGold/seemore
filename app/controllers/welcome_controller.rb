@@ -5,4 +5,8 @@ class WelcomeController < ApplicationController
       @media = media[0...15]
     end
   end
+
+  def filter
+
+  end
 end

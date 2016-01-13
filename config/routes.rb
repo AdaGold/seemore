@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  get '/:filter' => 'welcome#filter', as: :filter
+
   # users route
   get '/users/:id' => 'users#show', as: :user # gets user's account page
 

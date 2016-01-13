@@ -4,6 +4,19 @@
     <h1 id="timeline">Your FancyFeed</h1>
   </div>
 </div>
+
+<div class="filter-box">
+  <h3>Courses</h3>
+  <%= link_to root_path, class: "btn btn-default" do %>
+    <%= fa_icon("twitter lg") %>
+  <% end %>
+  <%= link_to root_path, class: "btn btn-default" do %>
+    <%= fa_icon("vimeo lg") %>
+  <% end %>
+  <%= link_to "All", root_path, class: "btn btn-default" %>
+  <br></br>
+</div>
+
 <% if !current_user.handles.empty? && !current_user.media.empty? %>
   <ul class="timeline">
     <% @media.each_with_index do |medium, index| %>
