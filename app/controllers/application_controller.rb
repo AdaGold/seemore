@@ -35,32 +35,26 @@ class ApplicationController < ActionController::Base
   end
 
   def update_feed
-    query_string = ""
-    response = []
+    unless current_user.handles.empty?
+      current_user.handles.each do |handle|
+        response = []
 
-    current_user.handles.each do |handle|
-      query_string += "from:#{handle.name} OR " if handle.provider == "twitter"
-      response += Vimeo::Video.get_user_videos(handle.uri) if handle.provider == "vimeo"
-    end
+        if handle.provider == "twitter"
+          response += $twitter.user_timeline(handle.uri).take(5)
+        elsif handle.provider == "vimeo"
+          response += Vimeo::Video.get_user_videos(handle.uri)
+        end
 
-    response += $twitter.search(query_string, result_type: "recent").take(2)
+        tracked = Medium.pluck(:uri)
 
-    media = Medium.all
-    tracked = Array.new
-
-    unless media.empty?
-      media.each do |medium|
-        tracked << medium.uri
-      end
-    end
-
-    current_user.handles.each do |handle|
-      response.each do |medium|
-        unless tracked.include?(medium.uri.to_s)
-          Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id) if medium.class == Vimeo::Video
-          if medium.class == Twitter::Tweet
-            new_tweet = Medium.create_tweet_medium(medium)
-            new_tweet.update(handle_id: handle.id)
+        response.each do |medium|
+          unless tracked.include?(medium.uri.to_s)
+            if medium.class == Twitter::Tweet
+              new_tweet = Medium.create_tweet_medium(medium)
+              new_tweet.update(handle_id: handle.id)
+            elsif medium.class == Vimeo::Video
+              Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id)
+            end
           end
         end
       end
