@@ -1,3 +1,6 @@
+env :PATH, ENV['PATH']
+require File.expand_path(File.dirname(__FILE__) + "/lib/feed_runner.rb")
+
 every 2.minutes do
   runner "Feed.update", :output => 'lib/cron.log'
 end
