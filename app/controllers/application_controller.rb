@@ -41,22 +41,24 @@ class ApplicationController < ActionController::Base
       query_string += "from:#{handle.name} OR " if handle.provider == "twitter"
 
       if handle.provider == "vimeo"
-        vimeo_responses = Vimeo::Video.get_user_videos(handle.uri)
+        vimeo_responses = Vimeo::Video.get_user_videos(handle.uri) || []
         vimeo_responses.each do |response|
           Medium.create(uri: response.uri, embed: response.embed, posted_at: response.posted_at, handle: handle)
         end
       end
     end
 
-    twitter_response = $twitter.search(query_string, result_type: "recent").take(2)
-    tracked = Medium.pluck(:uri)
-
-    twitter_response.each do |response|
-      unless tracked.include?(response.uri.to_s)
-        handle = Handle.find_by(name: response.user.screen_name)
-        new_tweet = Medium.create_tweet_medium(response)
-        new_tweet.update(handle: handle)
+    unless query_string.empty?
+      twitter_response = $twitter.search(query_string, result_type: "recent").take(2)
+      tracked = Medium.pluck(:uri)
+      twitter_response.each do |response|
+        unless tracked.include?(response.uri.to_s)
+          handle = Handle.find_by(name: response.user.screen_name)
+          new_tweet = Medium.create_tweet_medium(response)
+          new_tweet.update(handle: handle)
+        end
       end
     end
+
   end
 end

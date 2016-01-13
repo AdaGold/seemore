@@ -2,9 +2,6 @@ require 'rails_helper'
 require 'pry'
 
 RSpec.describe SessionsController, type: :controller  do
-  before :each do
-    controller.class.skip_after_action :update_feed
-  end
   describe "GET #create" do
     context "when using twitter authorization" do
       context "user was already logged in" do
