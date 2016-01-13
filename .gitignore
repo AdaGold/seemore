@@ -19,3 +19,5 @@
 # Ignore .env
 /.env
 /coverage
+
+/lib/cron.log
