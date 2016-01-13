@@ -41,9 +41,8 @@ RSpec.describe UsersController, type: :controller do
 
       it "decreases number of identities for logged in user by 1" do
         expect(user1.identities.length).to eq 1
-        post :deauthorize, id: user1.id, provider: identity.provider
-        get :show, id: user1.id
-        expect(user1.identities.length).to eq 0
+        post :deauthorize, id: user1.id, provider: user1.identities.first.provider
+        expect(user1.identities.reload.length).to eq 0
       end
     end
   end
