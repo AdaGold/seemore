@@ -1,8 +1,9 @@
-env :PATH, ENV['PATH']
-require File.expand_path(File.dirname(__FILE__) + "/lib/feed_runner.rb")
+# env :PATH, ENV['PATH']
+# require File.expand_path(File.dirname(__FILE__) + "/lib/feed_runner.rb")
+require_relative '../lib/feed_runner'
 
 every 2.minutes do
-  runner "Feed.update", :output => 'lib/cron.log'
+  runner "Feed.update", :output => 'log/cron.log'
 end
 # Use this file to easily define all of your cron jobs.
 #
