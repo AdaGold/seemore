@@ -10,7 +10,13 @@ class UsersController < ApplicationController
 
   def deauthorize
     user = User.find(params[:id])
-
+    provider = params[:provider]
+    identities = user.identities
+    identities.each do |identity|
+      if identity == provider
+        identity.delete
+      end
+    end
     redirect_to user_path(user.id)
   end
 end
