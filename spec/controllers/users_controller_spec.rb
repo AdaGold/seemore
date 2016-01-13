@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:user1) { create(:user1) }
 
+  let(:identity) { create(:identity) }
+
   before :each do
     session[:user_id] = user1
   end
@@ -23,6 +25,19 @@ RSpec.describe UsersController, type: :controller do
       session[:user_id] = nil
       get :show, id: user1.id
       expect(response).to redirect_to root_path
+    end
+  end
+
+  describe "#deauthorize" do
+    context "when logged in" do
+      before(:each) do
+        identity
+      end
+      it "decreases number of identities for logged in user by 1" do
+        expect(Identity.all.length).to eq 1
+        post :deauthorize, id: user1.id, provider: identity.provider
+        expect(Identity.all.length).to eq 0
+      end
     end
   end
 end

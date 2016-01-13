@@ -7,11 +7,19 @@
           <div class="panel-body">
             <% @user.identities.each do |i| %>
               <p>
-                <%= i.provider.capitalize %>
+                <% if i.provider == "twitter" %>
+                  <%= fa_icon("twitter lg") %> Twitter
+                <% elsif i.provider == "vimeo" %>
+                  <%= fa_icon("vimeo lg") %> Vimeo
+                <% else %>
+                  <%= i.provider.capitalize %>
+                <% end %>
+                <%= link_to "Remove", deauthorize_path(@user.id, i.provider), method: :put, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure? This will remove your ability to log on with this account." } %>
               </p>
             <% end %>
+
             <% unless @user.identities.where(provider: "vimeo").first && @user.identities.where(provider: "twitter").first %>
-              <h4>Link Another Account</h4>
+              <h4>Link Another Account:</h4>
               <% if !@user.identities.where(provider: "twitter").first %>
                 <%= link_to "/auth/twitter", class: "btn btn-default", data: { confirm: "Once you link your accounts, you can log in with either Twitter or Vimeo to access your feed. Are you sure you want to link these accounts?" } do %>
                   <%= fa_icon("twitter lg") %>

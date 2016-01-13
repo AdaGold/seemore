@@ -76,11 +76,24 @@ h1, h2 {
 }
 
 div.transbox {
-  margin-top: 35%;
-  background-color: #ffffff;
+  margin-top: 15%;
+  background-color: #fbf7fb;
   border: 1px solid black;
   opacity: 0.95;
   filter: alpha(opacity=95); /* For IE8 and earlier */
+}
+
+p.welcome {
+  text-align: center;
+  padding: 5px;
+  font-family: 'Pacifico', cursive;
+  font-size: 44px;
+}
+
+p.about-fancy-feed {
+  text-align: center;
+  padding: 10px;
+  font-family: 'Glegoo', serif;
 }
 
 p.login-button {
