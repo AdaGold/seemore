@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   delete "/logout", to: 'sessions#destroy', as: :logout
 
   # other
-  get 'users/:id/:provider' => 'users#confirm', as: :confirm
   put '/users/:id/:provider' => 'users#deauthorize', as: :deauthorize
 
   # The priority is based upon order of creation: first created -> highest priority.

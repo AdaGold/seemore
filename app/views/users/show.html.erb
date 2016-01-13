@@ -14,7 +14,7 @@
                 <% else %>
                   <%= i.provider.capitalize %>
                 <% end %>
-                <%= link_to "Remove", confirm_path(@user.id, i.provider), class: "btn btn-danger btn-sm" %>
+                <%= link_to "Remove", deauthorize_path(@user.id, i.provider), method: :put, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure? This will remove your ability to log on with this account." } %>
               </p>
             <% end %>
 

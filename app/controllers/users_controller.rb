@@ -8,11 +8,9 @@ class UsersController < ApplicationController
     @twitter_handles = @user.find_twitter_handles
   end
 
-  def confirm
-
-  end
-
   def deauthorize
+    user = User.find(params[:id])
 
+    redirect_to user_path(user.id)
   end
 end
