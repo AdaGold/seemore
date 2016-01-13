@@ -26,15 +26,14 @@ class Feed
 
       response += $twitter.search(query_string, result_type: "recent").take(100) unless query_string.empty?
 
-      handles.each do |handle|
-        response.each do |medium|
-          unless tracked.include?(medium.uri.to_s)
-            if medium.class == Twitter::Tweet
-              new_tweet = Medium.create_tweet_medium(medium)
-              new_tweet.update(handle_id: handle.id)
-            elsif medium.class == Vimeo::Video
-              Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id)
-            end
+      response.each do |medium|
+        unless tracked.include?(medium.uri.to_s)
+          if medium.class == Twitter::Tweet
+            handle = Handle.find()
+            new_tweet = Medium.create_tweet_medium(medium)
+            new_tweet.update(handle_id: handle.id)
+          elsif medium.class == Vimeo::Video
+            Medium.create(uri: medium.uri, embed: medium.embed, posted_at: medium.posted_at, handle_id: handle.id)
           end
         end
       end
