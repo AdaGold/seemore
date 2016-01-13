@@ -9,14 +9,14 @@ class WelcomeController < ApplicationController
   def filter
     filter = params[:filter]
 
-    if filter == "twitter"
-      # current_user.media
-      # @media = current_user.
-      render :index
-    elsif filter == "vimeo"
-      render :index
-    else
-      redirect_to root_path
+    @media = []
+
+    current_user.media.each do |medium|
+      if medium.handle.provider == filter
+        @media << medium
+      end
     end
+
+    render :index
   end
 end
