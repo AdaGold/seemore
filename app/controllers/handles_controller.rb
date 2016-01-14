@@ -35,7 +35,7 @@ class HandlesController < ApplicationController
     else
       current_user.handles << handle
       flash[:success] = "Subscription added!"
-      redirect_to user_path(current_user)
+      redirect_to :back
     end
   end
 
@@ -49,7 +49,7 @@ class HandlesController < ApplicationController
       Handle.destroy(handle.id)
     end
     flash[:success] = "Unsubscribed!"
-    redirect_to user_path(current_user)
+    redirect_to :back
   end
 
   def search
