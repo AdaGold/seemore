@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
   let(:user1) { create(:user1) }
+  let(:handle) { create(:twitter_handle) }
+  let(:medium) { create(:twitter_medium) }
 
   before(:each) do
     session[:user_id] = user1.id
@@ -23,10 +25,8 @@ RSpec.describe WelcomeController, type: :controller do
     end
     context "when following handles of that filter" do
       it "renders index view" do
-        medium = create(:twitter_medium)
-        handle = build(:twitter_handle)
         handle.media << medium
-        user1.handles << medium.handle
+        user1.handles << handle
         get :filter, filter: "twitter"
         expect(response).to render_template :index
       end
