@@ -12,16 +12,14 @@ class UsersController < ApplicationController
     # add logic so that if you delinked your last account, it should log you out
     user = User.find(params[:id])
     identities = user.identities
-    logout = false
 
     identities.each do |identity|
       if identity.provider == params[:provider]
         Identity.delete(identity)
-        logout = true
       end
     end
 
-    if logout == true
+    if user.identities.length == 0
       self.current_user = nil
       redirect_to root_path, notice: "Account destroyed!"
     else
