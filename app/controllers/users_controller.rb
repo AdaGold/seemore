@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         Identity.delete(identity)
       end
     end
-
+    user.reload
     if user.identities.length == 0
       self.current_user = nil
       redirect_to root_path, notice: "Account destroyed!"

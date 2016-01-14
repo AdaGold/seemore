@@ -45,11 +45,19 @@ RSpec.describe UsersController, type: :controller do
         expect(user1.identities.reload.length).to eq 0
       end
 
-      context "when logged in with mutliple identities" do
+      context "when logged in with 2 identities" do
         it "keeps user logged in" do
           user1.identities << create(:identity, provider: "vimeo")
           post :deauthorize, id: user1.id, provider: user1.identities.first.provider
           expect(response).to redirect_to user_path(user1.id)
+        end
+      end
+
+      context "when logged in with 1 identity" do
+        it "logs out a user" do
+          user1.identities << identity
+          post :deauthorize, id: user1.id, provider: user1.identities.first.provider
+          expect(response).to redirect_to root_path
         end
       end
     end
