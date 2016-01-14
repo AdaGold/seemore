@@ -20,12 +20,9 @@ class WelcomeController < ApplicationController
         end
       end
 
-      media = media.order(posted_at: :desc)
-
       @media = media[0...15]
 
       render :index
     end
   end
-  
 end
