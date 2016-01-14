@@ -35,7 +35,7 @@ gem 'omniauth-vimeo'
 
 gem 'twitter', '~> 5.15'
 
-gem 'whenever', :require => false
+# gem 'whenever', :require => false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -56,6 +56,9 @@ group :development, :test do
   gem 'simplecov'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+
+  gem 'vcr', '~> 3.0', '>= 3.0.1'
+  gem 'webmock', '~> 1.22', '>= 1.22.6'
 end
 
 group :development do

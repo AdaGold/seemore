@@ -24,9 +24,11 @@ RSpec.describe Handle, type: :model do
   describe ".create_handle" do
     context "when given an instance of Twitter::User" do
       it "adds an instance of Handle" do
-        expect(Handle.all.count).to eq 0
-        Handle.create_twitter_handle(twitter_user_instance.screen_name)
-        expect(Handle.all.count).to eq 1
+        VCR.use_cassette('api_responses', :record => :new_episodes) do
+          expect(Handle.all.count).to eq 0
+          Handle.create_twitter_handle(twitter_user_instance.screen_name)
+          expect(Handle.all.count).to eq 1
+        end
       end
     end
   end
@@ -36,23 +38,31 @@ RSpec.describe Handle, type: :model do
       create(:twitter_handle)
     end
     it "returns array" do
-      expect(Handle.search("houglande")).to be_kind_of(Array)
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        expect(Handle.search("houglande")).to be_kind_of(Array)
+      end
     end
     it "returns array of Twitter::User instances" do
-      expect(Handle.search("houglande")[0]).to be_an_instance_of(Twitter::User)
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        expect(Handle.search("houglande")[0]).to be_an_instance_of(Twitter::User)
+      end
     end
     it "returns correct instance of Twitter::User" do
-      search_results = Handle.search("houglande")
-      expect(search_results).to include(twitter_user_instance)
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        search_results = Handle.search("houglande")
+        expect(search_results).to include(twitter_user_instance)
+      end
     end
   end
 
   describe ".create_vimeo_handle" do
     it "increases num of Handles by 1" do
-      expect(Handle.all.count).to eq 0
-      Handle.create_vimeo_handle("/users/657778")
-      # https://vimeo.com/user657778
-      expect(Handle.all.count).to eq 1
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        expect(Handle.all.count).to eq 0
+        Handle.create_vimeo_handle("/users/657778")
+        # https://vimeo.com/user657778
+        expect(Handle.all.count).to eq 1
+      end
     end
   end
 end

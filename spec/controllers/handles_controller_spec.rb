@@ -19,20 +19,24 @@ RSpec.describe HandlesController, type: :controller do
     context "when handle does not yet exist in our database" do
       context "when provider is twitter" do
         it "creates a new handle with twitter as provider and 5 associated media" do
-          post :subscribe, twitter_params
-          expect(Handle.all.last.provider).to eq "twitter"
-          expect(Medium.all.length).to eq 5
-          expect(Handle.all.last.media).to eq Medium.all
+          VCR.use_cassette('api_responses', :record => :new_episodes) do
+            post :subscribe, twitter_params
+            expect(Handle.all.last.provider).to eq "twitter"
+            expect(Medium.all.length).to eq 5
+            expect(Handle.all.last.media).to eq Medium.all
+          end
         end
       end
     end
 
     context "when provider is vimeo" do
       it "creates a new handle with vimeo as provider and 5 associated media" do
-        post :subscribe, vimeo_params
-        expect(Handle.all.last.provider).to eq "vimeo"
-        expect(Medium.all.length).to eq 5
-        expect(Handle.all.last.media).to eq Medium.all
+        VCR.use_cassette('api_responses', :record => :new_episodes) do
+          post :subscribe, vimeo_params
+          expect(Handle.all.last.provider).to eq "vimeo"
+          expect(Medium.all.length).to eq 5
+          expect(Handle.all.last.media).to eq Medium.all
+        end
       end
     end
 
@@ -72,25 +76,31 @@ RSpec.describe HandlesController, type: :controller do
 
   describe "#search" do
     it "returns vimeo user objects whose name matches the name query" do
-      get :search, { query: "Johnny Kelly" }
-      expect(assigns(:vimeo_search_results).length).to eq 9
-      expect(assigns(:vimeo_search_results)[0]).to be_an_instance_of Vimeo::User
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        get :search, { query: "Johnny Kelly" }
+        expect(assigns(:vimeo_search_results).length).to eq 9
+        expect(assigns(:vimeo_search_results)[0]).to be_an_instance_of Vimeo::User
+      end
     end
 
     context "if the current user is subscribed to corresponding vimeo handle" do
       it "assigns the vimeo object's subscribe attritube to true" do
-        vimeo_handle = create(:vimeo_handle)
-        user1.handles << vimeo_handle
-        get :search, { query: "Johnny Kelly" }
+        VCR.use_cassette('api_responses', :record => :new_episodes) do
+          vimeo_handle = create(:vimeo_handle)
+          user1.handles << vimeo_handle
+          get :search, { query: "Johnny Kelly" }
 
-        expect(assigns(:vimeo_search_results)[0].subscribed).to eq true
+          expect(assigns(:vimeo_search_results)[0].subscribed).to eq true
+        end
       end
     end
 
     it "returns twitter user objects whose name matches the name query " do
-      get :search, { query: "Hello ClubW" }
-      expect(assigns(:twitter_search_results).length).to eq 1
-      expect(assigns(:twitter_search_results)[0]).to be_an_instance_of Twitter::User
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        get :search, { query: "Hello ClubW" }
+        expect(assigns(:twitter_search_results).length).to eq 1
+        expect(assigns(:twitter_search_results)[0]).to be_an_instance_of Twitter::User
+      end
     end
   end
 end

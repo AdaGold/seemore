@@ -20,10 +20,12 @@ RSpec.describe Medium, type: :model do
   describe ".create_medium" do
     context "when given an instance of Twitter::Tweet" do
       it "adds an instance of Medium" do
-        expect(Medium.all.count).to eq 0
-        create(:twitter_handle)
-        Medium.create_tweet_medium($twitter.status(27558893223))
-        expect(Medium.all.count).to eq 1
+        VCR.use_cassette('api_responses', :record => :new_episodes) do
+          expect(Medium.all.count).to eq 0
+          create(:twitter_handle)
+          Medium.create_tweet_medium($twitter.status(27558893223))
+          expect(Medium.all.count).to eq 1
+        end
       end
     end
   end

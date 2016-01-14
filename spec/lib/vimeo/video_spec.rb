@@ -6,11 +6,15 @@ RSpec.describe Vimeo, type: :module do
 
   describe ".get_user_videos" do
     it "returns an array" do
-      expect(Vimeo::Video.get_user_videos(user_uri)).to be_an_instance_of Array
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        expect(Vimeo::Video.get_user_videos(user_uri)).to be_an_instance_of Array
+      end
     end
 
     it "returns an array of Vimeo::Video objects" do
-      expect(Vimeo::Video.get_user_videos(user_uri).first).to be_an_instance_of Vimeo::Video
+      VCR.use_cassette('api_responses', :record => :new_episodes) do
+        expect(Vimeo::Video.get_user_videos(user_uri).first).to be_an_instance_of Vimeo::Video
+      end
     end
   end
 end

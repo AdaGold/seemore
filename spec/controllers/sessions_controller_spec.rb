@@ -54,8 +54,11 @@ RSpec.describe SessionsController, type: :controller  do
           User.last.handles << twit_handle
           User.last.handles << vim_handle
           delete :destroy
-          get :create
-          expect(response).to redirect_to root_path
+
+          VCR.use_cassette('api_responses', :record => :new_episodes) do
+            get :create
+            expect(response).to redirect_to root_path
+          end
         end
       end
     end

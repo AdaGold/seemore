@@ -21,3 +21,5 @@
 /coverage
 
 /lib/cron.log
+
+spec/vcr/api_responses.yml
