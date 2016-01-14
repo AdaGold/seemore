@@ -5,17 +5,19 @@
   </div>
 </div>
 
-<div class="filter-box">
-  <h3>Menu</h3>
-  <%= link_to filter_path("twitter"), class: "btn btn-default" do %>
-    <%= fa_icon("twitter lg") %>
-  <% end %>
-  <%= link_to filter_path("vimeo"), class: "btn btn-default" do %>
-    <%= fa_icon("vimeo lg") %>
-  <% end %>
-  <%= link_to "All", root_path, class: "btn btn-default" %>
-  <br></br>
-</div>
+<% unless current_user.handles.length == 0 %>
+  <div class="filter-box">
+    <h3>Menu</h3>
+    <%= link_to filter_path("twitter"), class: "btn btn-default" do %>
+      <%= fa_icon("twitter lg") %>
+    <% end %>
+    <%= link_to filter_path("vimeo"), class: "btn btn-default" do %>
+      <%= fa_icon("vimeo lg") %>
+    <% end %>
+    <%= link_to "All", root_path, class: "btn btn-default" %>
+    <br></br>
+  </div>
+<% end %>
 
 <div class="container">
   <% if !current_user.handles.empty? && !current_user.media.empty? %>
