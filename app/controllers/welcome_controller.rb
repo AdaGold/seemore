@@ -7,19 +7,19 @@ class WelcomeController < ApplicationController
   end
 
   def filter
-    if current_user.media.length < 1
+    filter = params[:filter]
+
+    media = []
+
+    current_user.media.each do |medium|
+      if medium.handle.provider == filter
+        media << medium
+      end
+    end
+
+    if media.length < 1
       redirect_to root_path
     else
-      filter = params[:filter]
-
-      media = []
-
-      current_user.media.each do |medium|
-        if medium.handle.provider == filter
-          media << medium
-        end
-      end
-
       @media = media[0...15]
 
       render :index
