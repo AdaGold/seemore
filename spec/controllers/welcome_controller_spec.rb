@@ -10,4 +10,10 @@ RSpec.describe WelcomeController, type: :controller do
       expect(response).to render_template :index
     end
   end
+
+  describe "#filter" do
+    context "when logged in" do
+      
+    end
+  end
 end
