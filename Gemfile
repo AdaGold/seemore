@@ -35,6 +35,8 @@ gem 'omniauth-vimeo'
 
 gem 'twitter', '~> 5.15'
 
+gem 'will_paginate', '~> 3.0.6'
+
 # gem 'whenever', :require => false
 
 # Use ActiveModel has_secure_password

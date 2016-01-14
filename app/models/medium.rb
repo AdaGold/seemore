@@ -13,6 +13,10 @@ class Medium < ActiveRecord::Base
     return medium
   end
 
+  def self.sorted_media(current_user)
+    current_user.media.order(posted_at: :desc)
+  end
+
   def set_embed(tweet_instance)
     response = HTTParty.get("https://api.twitter.com/1/statuses/oembed.json?url=https://twitter.com/Interior/status/#{tweet_instance.id}")
     unescaped = response["html"].delete('\"')
