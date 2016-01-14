@@ -23,10 +23,10 @@ RSpec.describe WelcomeController, type: :controller do
     end
     context "when following handles of that filter" do
       it "renders index view" do
+        medium = create(:twitter_medium)
         handle = build(:twitter_handle)
-        build(:twitter_medium)
-        user1.handles << handle
-        binding.pry
+        handle.media << medium
+        user1.handles << medium.handle
         get :filter, filter: "twitter"
         expect(response).to render_template :index
       end
