@@ -17,10 +17,12 @@ class WelcomeController < ApplicationController
       end
     end
 
-    media = media.order(posted_at: :desc)
+    if media.length < 1
+      redirect_to root_path
+    else
+      @media = media[0...15]
 
-    @media = media[0...15]
-
-    render :index
+      render :index
+    end
   end
 end
