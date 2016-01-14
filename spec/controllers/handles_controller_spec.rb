@@ -5,6 +5,7 @@ RSpec.describe HandlesController, type: :controller do
 
   before(:each) do
    session[:user_id] = user1.id
+   request.env["HTTP_REFERER"] = "where_i_came_from"
   end
 
   describe "#subscribe" do
@@ -43,7 +44,6 @@ RSpec.describe HandlesController, type: :controller do
     context "when user has already subscribed to handle" do
       it "redirects to last page" do
         user1.handles << create(:twitter_handle)
-        request.env["HTTP_REFERER"] = "where_i_came_from"
         post :subscribe, twitter_params
         expect(subject).to redirect_to "where_i_came_from"
       end
@@ -70,7 +70,7 @@ RSpec.describe HandlesController, type: :controller do
 
     it "redirects to settings page" do
       put :unsubscribe, { handle_uri: "https://twitter.com/sferik" }
-      expect(subject).to redirect_to user_path(user1.id)
+      expect(subject).to redirect_to "where_i_came_from"
     end
   end
 
