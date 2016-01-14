@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   # other
   put '/users/:id/:provider' => 'users#deauthorize', as: :deauthorize
 
+  get '/:filter' => 'welcome#filter', as: :filter
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
