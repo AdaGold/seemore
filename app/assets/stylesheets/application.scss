@@ -19,6 +19,28 @@ body {
   padding-top: 90px;
 }
 
+#search-form {
+  text-align: center;
+}
+
+div.input-append {
+  display: table;
+  height: inherit;
+  width: 100%;
+}
+
+#query {
+  display: table-cell;
+  height: 100%;
+  margin: 0;
+  margin-right: 5px;
+}
+
+.input-append .btn {
+  background-color: transparent;
+  padding-top: 8px;
+}
+
 .navbar-brand.nav-logo {
   font-family: 'Pacifico', cursive;
   font-size: 25px;
