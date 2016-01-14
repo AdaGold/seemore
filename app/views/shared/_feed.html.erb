@@ -17,41 +17,47 @@
   <br></br>
 </div>
 
-<% if !current_user.handles.empty? && !current_user.media.empty? %>
-  <ul class="timeline">
-    <% @media.each_with_index do |medium, index| %>
-      <!-- decide which side of timeline to post on -->
-      <% if index % 2 == 0 %>
-      <li class="feed">
-      <% else %>
-      <li class="timeline-inverted feed">
-      <% end %>
-
-        <!-- decide which icon to display (pencil or video) -->
-        <% if medium.handle.provider == "vimeo" %>
-        <div class="timeline-badge muted"><i class="glyphicon glyphicon-facetime-video"></i></div>
-        <% elsif medium.handle.provider == "twitter" %>
-        <div class="timeline-badge info"><i class="glyphicon glyphicon-pencil"></i></div>
+<div class="container">
+  <% if !current_user.handles.empty? && !current_user.media.empty? %>
+    <ul class="timeline">
+      <% @media.each_with_index do |medium, index| %>
+        <!-- decide which side of timeline to post on -->
+        <% if index % 2 == 0 %>
+        <li class="feed">
+        <% else %>
+        <li class="timeline-inverted feed">
         <% end %>
 
-        <!-- add text or video -->
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <% if medium.handle.provider == "vimeo" %>
-            <div class="videoWrapper">
-              <%= medium.embed.html_safe %>
+          <!-- decide which icon to display (pencil or video) -->
+          <% if medium.handle.provider == "vimeo" %>
+          <div class="timeline-badge muted"><i class="glyphicon glyphicon-facetime-video"></i></div>
+          <% elsif medium.handle.provider == "twitter" %>
+          <div class="timeline-badge info"><i class="glyphicon glyphicon-pencil"></i></div>
+          <% end %>
+
+          <!-- add text or video -->
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <% if medium.handle.provider == "vimeo" %>
+              <div class="videoWrapper">
+                <%= medium.embed.html_safe %>
+              </div>
+              <% elsif medium.handle.provider == "twitter" %>
+                <div class="timeline-title">
+                  <div class="tweetWrapper">
+                    <%= medium.embed.html_safe %>
+                  </div>
+                </div>
+              <% end %>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Posted <%= time_ago_in_words(medium.posted_at) %> ago</small></p>
             </div>
-            <% elsif medium.handle.provider == "twitter" %>
-              <h4 class="timeline-title"><%= medium.embed.html_safe %></h4>
-            <% end %>
-            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Posted <%= time_ago_in_words(medium.posted_at) %> ago</small></p>
           </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p class="empty-feed">
-    Nothing to see here ...yet!
-  </p>
-<% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="empty-feed">
+      Nothing to see here ...yet!
+    </p>
+  <% end %>
+</div>
