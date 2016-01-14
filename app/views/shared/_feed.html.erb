@@ -31,7 +31,8 @@
 
         <!-- decide which icon to display (pencil or video) -->
         <% if medium.handle.provider == "vimeo" %>
-        <div class="timeline-badge muted"><i class="glyphicon glyphicon-facetime-video"></i></div>
+        <div class="timeline-badge muted">
+          <i class="glyphicon glyphicon-facetime-video"></i></div>
         <% elsif medium.handle.provider == "twitter" %>
         <div class="timeline-badge info"><i class="glyphicon glyphicon-pencil"></i></div>
         <% end %>

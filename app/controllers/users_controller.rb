@@ -9,14 +9,23 @@ class UsersController < ApplicationController
   end
 
   def deauthorize
-    # add logic such that user must have at least one identity associated!
+    # add logic so that if you delinked your last account, it should log you out
     user = User.find(params[:id])
     identities = user.identities
+    logout = false
+
     identities.each do |identity|
       if identity.provider == params[:provider]
         Identity.delete(identity)
+        logout = true
       end
     end
-    redirect_to user_path(user.id)
+
+    if logout == true
+      self.current_user = nil
+      redirect_to root_path, notice: "Account destroyed!"
+    else
+      redirect_to user_path(user.id)
+    end
   end
 end
