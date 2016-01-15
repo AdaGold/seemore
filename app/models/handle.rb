@@ -8,8 +8,6 @@ class Handle < ActiveRecord::Base
   end
 
   def self.create_twitter_handle(handle_username)
-    # twitter_user_instance will come from twitter gem (ex: calling $twitter.user("houglande"),
-    # which returns an instance of their twitter::user class)
     handle_instance = $twitter.user(handle_username)
     handle = Handle.new
     handle.name = handle_instance.screen_name

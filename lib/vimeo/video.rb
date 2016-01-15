@@ -20,9 +20,6 @@ module Vimeo
         video_object_array << self.new(hash)
       end
       return video_object_array
-
-      # a.gsub!(/\"/, '\'')
     end
-
   end
 end

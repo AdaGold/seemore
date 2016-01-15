@@ -39,7 +39,6 @@ class HandlesController < ApplicationController
     end
   end
 
-  # need to update this
   def unsubscribe
     handle_uri = params["handle_uri"]
     handle = Handle.find_by_uri(handle_uri)
@@ -66,16 +65,4 @@ class HandlesController < ApplicationController
     end
     @twitter_search_results = $twitter.user_search(name)
   end
-
-  # def search_vimeo
-  #   name = params[:query]
-  #
-  #   @search_results = Vimeo::User.find_by_name(name)
-  #   @search_results.each do |sr|
-  #     handle = Handle.find_by_uri(sr.uri)
-  #     if current_user.handles.include?(handle)
-  #       sr.subscribed = true
-  #     end
-  #   end
-  # end
 end

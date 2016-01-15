@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def deauthorize
-    # add logic so that if you delinked your last account, it should log you out
     user = User.find(params[:id])
     identities = user.identities
 

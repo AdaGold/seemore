@@ -3,8 +3,6 @@ class Medium < ActiveRecord::Base
   validates :uri, :posted_at, presence: true
 
   def self.create_tweet_medium(tweet_instance)
-    # tweet_instance will come from twitter gem (ex: calling $twitter.status(27558893223),
-    # which returns an instance of their twitter::tweet class)
     medium = Medium.new
     medium.uri = tweet_instance.uri
     medium.posted_at = tweet_instance.created_at
