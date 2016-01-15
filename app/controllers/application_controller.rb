@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
 
   def update_feed
     query_string = ""
+    tracked = Medium.pluck(:uri)
 
     current_user.handles.each do |handle|
       query_string += "from:#{handle.name} OR " if handle.provider == "twitter"
@@ -43,14 +44,15 @@ class ApplicationController < ActionController::Base
       if handle.provider == "vimeo"
         vimeo_responses = Vimeo::Video.get_user_videos(handle.uri) || []
         vimeo_responses.each do |response|
-          Medium.create(uri: response.uri, embed: response.embed, posted_at: response.posted_at, handle: handle)
+          unless tracked.include?(response.uri.to_s)
+            Medium.create(uri: response.uri, embed: response.embed, posted_at: response.posted_at, handle: handle)
+          end
         end
       end
     end
 
     unless query_string.empty?
-      twitter_response = $twitter.search(query_string, result_type: "recent").take(2)
-      tracked = Medium.pluck(:uri)
+      twitter_response = $twitter.search(query_string, result_type: "recent").take(100)
       twitter_response.each do |response|
         unless tracked.include?(response.uri.to_s)
           handle = Handle.find_by(name: response.user.screen_name)
