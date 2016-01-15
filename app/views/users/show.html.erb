@@ -14,7 +14,13 @@
                 <% else %>
                   <%= i.provider.capitalize %>
                 <% end %>
-                <%= link_to "Remove", deauthorize_path(@user.id, i.provider), method: :put, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure? This will remove your ability to log on with this account." } %>
+
+                <% if @user.identities.length <= 1 %>
+                  <%= link_to "Remove", deauthorize_path(@user.id, i.provider), method: :put, class: "btn btn-danger btn-sm", data: { confirm: "TBD" } %>
+                <% else %>
+                  <%= link_to "Remove", deauthorize_path(@user.id, i.provider), method: :put, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure? This will remove your ability to log on with this account." } %>
+                <% end %>
+
               </p>
             <% end %>
 

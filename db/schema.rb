@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160111231950) do
     t.datetime "updated_at", null: false
     t.string   "uri"
     t.string   "embed"
-    t.time     "posted_at"
+    t.datetime "posted_at"
   end
 
   add_index "media", ["handle_id"], name: "index_media_on_handle_id"
