@@ -51,7 +51,9 @@
         </div>
       </li>
     <% end %>
-    <%= will_paginate @media %>
+    <div class="pagination-wrapper">
+      <%= will_paginate @media, renderer: BootstrapPagination::Rails %>
+    </div>
   </ul>
 <% else %>
   <p class="empty-feed">

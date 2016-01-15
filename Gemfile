@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
+gem 'will_paginate-bootstrap'
+
 # Fonts
 gem "font-awesome-rails"
 # Bootstrap
